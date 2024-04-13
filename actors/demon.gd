@@ -3,6 +3,7 @@ class_name Demon
 
 @export var data: DemonData
 @export var initial_nav_target: Node2D
+@export var team: GameConstants.TEAM
 
 var _current_nav_target: Variant
 var _health: float
