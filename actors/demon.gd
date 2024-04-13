@@ -11,6 +11,8 @@ enum DEMON_STATES {
 @export var initial_nav_target: Node2D
 @export var team: GameConstants.TEAM
 
+@onready var _health_bar: ProgressBar = %ProgressBar
+
 var _attack_cooldown: float
 var _current_nav_target: Variant
 var _health: float
@@ -18,7 +20,8 @@ var _state: DEMON_STATES
 
 
 func damage(amount: float) -> void:
-	_health -= amount
+	_health = clamp(_health - amount, 0.0, data.health)
+	_health_bar.value = _health / data.health
 	
 	if _health <= 0.0:
 		queue_free()
@@ -36,6 +39,7 @@ func _attack(attack_target: Demon) -> void:
 
 func _ready():
 	_health = data.health
+	_health_bar.value = _health / data.health
 	_current_nav_target = initial_nav_target
 
 
