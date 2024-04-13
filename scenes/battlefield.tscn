@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvobys7nxd43m"]
+
+[ext_resource type="PackedScene" uid="uid://7vq0f7fsj50q" path="res://actors/demon.tscn" id="1_nyt11"]
+[ext_resource type="Resource" uid="uid://bfe75pli6dvit" path="res://data/demons/melee.tres" id="2_0tna0"]
+
+[node name="Battlefield" type="Node2D"]
+
+[node name="Nav Point 1" type="Node2D" parent="."]
+position = Vector2(700, 323)
+
+[node name="Demon" parent="." node_paths=PackedStringArray("initial_nav_target") instance=ExtResource("1_nyt11")]
+position = Vector2(312, 306)
+data = ExtResource("2_0tna0")
+initial_nav_target = NodePath("../Nav Point 1")
