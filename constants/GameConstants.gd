@@ -16,3 +16,8 @@ const DEMONS_GROUP = "Demon"
 const STORE_KEYS := {
 	"SELECTED_SUMMONING_AREA": "selected_summoning_area",
 }
+
+const DEMON_DATA := {
+	"melee": preload("res://data/demons/melee.tres"),
+	"ranged": preload("res://data/demons/ranged.tres")
+}

@@ -1,10 +1,7 @@
 extends Node2D
 
 const demon_scene: PackedScene = preload("res://actors/demon.tscn")
-const demon_data := {
-	"melee": preload("res://data/demons/melee.tres"),
-	"ranged": preload("res://data/demons/ranged.tres")
-}
+
 
 @export var nav_target: Node2D
 @export var team: GameConstants.TEAM

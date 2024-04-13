@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct0pcp183qib1"]
+
+[ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="1_3m4sp"]
+
+[node name="SummonButton" type="TextureButton"]
+custom_minimum_size = Vector2(50, 50)
+texture_normal = ExtResource("1_3m4sp")
+ignore_texture_size = true
+stretch_mode = 6

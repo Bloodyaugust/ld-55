@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvobys7nxd43m"]
+[gd_scene load_steps=10 format=3 uid="uid://dvobys7nxd43m"]
 
 [ext_resource type="PackedScene" uid="uid://dfubdup154sny" path="res://actors/demon.tscn" id="1_nyt11"]
 [ext_resource type="Resource" uid="uid://bfe75pli6dvit" path="res://data/demons/melee.tres" id="2_0tna0"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bd3ut506sq25t" path="res://actors/tower.tscn" id="5_duubj"]
 [ext_resource type="Resource" uid="uid://c3vrhtepihlxt" path="res://data/tower.tres" id="6_xsqej"]
 [ext_resource type="PackedScene" uid="uid://c2rr6cgguw8qn" path="res://doodads/summoning_area.tscn" id="7_6in7d"]
+[ext_resource type="Theme" uid="uid://co811ue55i33m" path="res://resources/base_theme.tres" id="8_mqmnd"]
+[ext_resource type="Script" path="res://views/Summoning.gd" id="9_bs3c2"]
 
 [node name="Battlefield" type="Node2D"]
 
@@ -51,3 +53,30 @@ nav_target = NodePath("../AIWaypoint")
 position = Vector2(350, 0)
 nav_target = NodePath("../PlayerWaypoint")
 team = 1
+
+[node name="HUDRoot" type="CanvasLayer" parent="."]
+
+[node name="Summoning" type="MarginContainer" parent="HUDRoot"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_mqmnd")
+script = ExtResource("9_bs3c2")
+
+[node name="CenterContainer" type="CenterContainer" parent="HUDRoot/Summoning"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HUDRoot/Summoning/CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUDRoot/Summoning/CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="SummonButtonsContainer" type="HBoxContainer" parent="HUDRoot/Summoning/CenterContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
