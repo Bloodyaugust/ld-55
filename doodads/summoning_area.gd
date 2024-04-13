@@ -32,5 +32,5 @@ func _ready():
 	_area2D.input_event.connect(_on_area2D_input_event)
 
 
-func _process(delta):
+func _process(_delta):
 	queue_redraw()

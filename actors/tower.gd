@@ -22,7 +22,3 @@ func damage(amount: float) -> void:
 func _ready():
 	_health = data.health
 	_health_bar.value = _health / data.health
-
-
-func _process(delta):
-	pass

@@ -68,6 +68,8 @@ func _determine_state() -> void:
 	elif _team_counts[GameConstants.TEAM.AI] >= 1 and _team_counts[GameConstants.TEAM.PLAYER] >= 1:
 		_state = STATE.CONTESTED
 		_capture_progress = 0.0
+	elif (_team_counts[GameConstants.TEAM.AI] > 0 and _team == GameConstants.TEAM.AI) or (_team_counts[GameConstants.TEAM.PLAYER] > 0 and _team == GameConstants.TEAM.PLAYER):
+		_state = STATE.CAPTURED
 	else:
 		_state = STATE.CAPTURING
 
