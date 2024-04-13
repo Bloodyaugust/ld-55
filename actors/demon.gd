@@ -40,26 +40,42 @@ func _ready():
 
 
 func _physics_process(delta):
-	if GDUtil.reference_safe(_current_nav_target):
-		if is_equal_approx(global_position.distance_to(_current_nav_target.global_position), 0.0):
-			_current_nav_target = null
-		else:
-			var _move_direction: Vector2 = global_position.direction_to(_current_nav_target.global_position)
-			
-			if global_position.distance_to(_current_nav_target.global_position) <= data.move_speed * delta:
-				global_position = Vector2(_current_nav_target.global_position)
-			else:
-				translate(_move_direction * data.move_speed * delta)
+	match _state:
+		DEMON_STATES.IDLE:
+			pass
+		DEMON_STATES.MOVING:
+			if GDUtil.reference_safe(_current_nav_target):
+				if is_equal_approx(global_position.distance_to(_current_nav_target.global_position), 0.0):
+					_current_nav_target = null
+				else:
+					var _move_direction: Vector2 = global_position.direction_to(_current_nav_target.global_position)
 
+					if global_position.distance_to(_current_nav_target.global_position) <= data.move_speed * delta:
+						global_position = Vector2(_current_nav_target.global_position)
+					else:
+						translate(_move_direction * data.move_speed * delta)
+		DEMON_STATES.ATTACKING:
+			pass
 
 func _process(delta):
+	_attack_cooldown = clamp(_attack_cooldown - delta, 0.0, data.attack_interval)
 	var _group_nodes := get_tree().get_nodes_in_group(GameConstants.DEMONS_GROUP)
 	var _demons: Array[Demon]
 	_demons.assign(_group_nodes)
 	var _enemy_demons: Array[Demon] = _demons.filter(func (checking_demon: Demon): return team != checking_demon.team)
 	var _enemy_demons_in_range: Array[Demon] = _enemy_demons.filter(func (checking_demon: Demon): return global_position.distance_to(checking_demon.global_position) <= data.attack_range)
 	
-	_attack_cooldown = clamp(_attack_cooldown - delta, 0.0, data.attack_interval)
-
-	if _enemy_demons_in_range.size() > 0 and is_equal_approx(_attack_cooldown, 0.0):
-		_attack(_enemy_demons_in_range.front())
+	match _state:
+		DEMON_STATES.IDLE:
+			if _enemy_demons_in_range.size() > 0:
+				_state = DEMON_STATES.ATTACKING
+			elif GDUtil.reference_safe(_current_nav_target):
+				_state = DEMON_STATES.MOVING
+		DEMON_STATES.MOVING:
+			if _enemy_demons_in_range.size() > 0:
+				_state = DEMON_STATES.ATTACKING
+		DEMON_STATES.ATTACKING:
+			if _enemy_demons_in_range.size() == 0:
+				_state = DEMON_STATES.IDLE
+			elif is_equal_approx(_attack_cooldown, 0.0):
+				_attack(_enemy_demons_in_range.front())

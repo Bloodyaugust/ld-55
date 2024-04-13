@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DemonData" load_steps=3 format=3 uid="uid://d5syclv4fn5d"]
+
+[ext_resource type="Script" path="res://data/demon.gd" id="1_xqfc3"]
+[ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="2_o38pe"]
+
+[resource]
+script = ExtResource("1_xqfc3")
+health = 50.0
+move_speed = 300.0
+damage = 5.0
+attack_interval = 0.5
+cost = 10.0
+sprite = ExtResource("2_o38pe")
+attack_range = 200.0
+sight_range = 0.0

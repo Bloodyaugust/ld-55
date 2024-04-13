@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://7vq0f7fsj50q"]
+[gd_scene load_steps=4 format=3 uid="uid://dfubdup154sny"]
 
 [ext_resource type="Script" path="res://actors/demon.gd" id="1_ga683"]
 [ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="1_jkdut"]

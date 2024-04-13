@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfjaqu2i4i63i"]
+[gd_scene load_steps=12 format=3 uid="uid://bfjaqu2i4i63i"]
 
 [ext_resource type="Script" path="res://views/FPS.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="2"]
@@ -7,9 +7,10 @@
 [ext_resource type="PackedScene" path="res://lib/BetterCam.tscn" id="5"]
 [ext_resource type="Script" path="res://views/Splash.gd" id="6"]
 [ext_resource type="Script" path="res://views/About.gd" id="7_xk6j8"]
-[ext_resource type="PackedScene" uid="uid://7vq0f7fsj50q" path="res://actors/demon.tscn" id="8_rv5sd"]
+[ext_resource type="PackedScene" uid="uid://dfubdup154sny" path="res://actors/demon.tscn" id="8_rv5sd"]
 [ext_resource type="Resource" uid="uid://bfe75pli6dvit" path="res://data/demons/melee.tres" id="9_8v6gk"]
 [ext_resource type="PackedScene" uid="uid://dlkibh8vjr7pd" path="res://doodads/waypoint.tscn" id="10_7pb7x"]
+[ext_resource type="Resource" uid="uid://d5syclv4fn5d" path="res://data/demons/ranged.tres" id="10_63i84"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -134,11 +135,10 @@ position = Vector2(4, 180)
 position = Vector2(-176, -11)
 data = ExtResource("9_8v6gk")
 initial_nav_target = NodePath("../Nav Point 1")
-team = 0
 
 [node name="Demon2" parent="." node_paths=PackedStringArray("initial_nav_target") instance=ExtResource("8_rv5sd")]
 position = Vector2(213, -4)
-data = ExtResource("9_8v6gk")
+data = ExtResource("10_63i84")
 initial_nav_target = NodePath("../Nav Point 1")
 team = 1
 
