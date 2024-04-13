@@ -1,4 +1,5 @@
 extends Node
+class_name GDUtil
 
 
 static func centroid(points: Array) -> Vector2:

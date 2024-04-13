@@ -65,7 +65,7 @@ func _physics_process(delta):
 func _process(delta):
 	_attack_cooldown = clamp(_attack_cooldown - delta, 0.0, data.attack_interval)
 	var _group_nodes := get_tree().get_nodes_in_group(GameConstants.DEMONS_GROUP)
-	var _demons: Array[Demon]
+	var _demons: Array[Demon] = []
 	_demons.assign(_group_nodes)
 	var _enemy_demons: Array[Demon] = _demons.filter(func (checking_demon: Demon): return team != checking_demon.team)
 	var _enemy_demons_in_range: Array[Demon] = _enemy_demons.filter(func (checking_demon: Demon): return global_position.distance_to(checking_demon.global_position) <= data.attack_range)
