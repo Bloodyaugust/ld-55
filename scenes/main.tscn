@@ -128,28 +128,24 @@ text = "Main Menu"
 mouse_drag = false
 zoom_max = 1.0
 
-[node name="Demon" parent="." node_paths=PackedStringArray("initial_nav_target") instance=ExtResource("8_rv5sd")]
+[node name="Demon" parent="." instance=ExtResource("8_rv5sd")]
 position = Vector2(-176, -11)
 data = ExtResource("9_8v6gk")
-initial_nav_target = NodePath("")
 
-[node name="Demon2" parent="." node_paths=PackedStringArray("initial_nav_target") instance=ExtResource("8_rv5sd")]
+[node name="Demon2" parent="." instance=ExtResource("8_rv5sd")]
 position = Vector2(213, -4)
 data = ExtResource("10_63i84")
-initial_nav_target = NodePath("")
 team = 1
 
-[node name="AIWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("10_7pb7x")]
+[node name="AIWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai") instance=ExtResource("10_7pb7x")]
 position = Vector2(-182, 0)
 nav_target_ai = NodePath("../ContestedWaypoint")
-nav_target_player = NodePath("")
 
 [node name="ContestedWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("10_7pb7x")]
 position = Vector2(1, 182)
 nav_target_ai = NodePath("../PlayerWaypoint2")
 nav_target_player = NodePath("../AIWaypoint")
 
-[node name="PlayerWaypoint2" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("10_7pb7x")]
+[node name="PlayerWaypoint2" parent="." node_paths=PackedStringArray("nav_target_player") instance=ExtResource("10_7pb7x")]
 position = Vector2(214, -2)
-nav_target_ai = NodePath("")
 nav_target_player = NodePath("../ContestedWaypoint")

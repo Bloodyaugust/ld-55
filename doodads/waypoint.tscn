@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlkibh8vjr7pd"]
+[gd_scene load_steps=4 format=3 uid="uid://dlkibh8vjr7pd"]
 
 [ext_resource type="Script" path="res://doodads/waypoint.gd" id="1_mjwuc"]
+[ext_resource type="Theme" uid="uid://co811ue55i33m" path="res://resources/base_theme.tres" id="2_ixgsd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_psthq"]
 radius = 74.0608
@@ -13,3 +14,13 @@ unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_psthq")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+offset_left = -50.0
+offset_top = 81.0
+offset_right = 50.0
+offset_bottom = 108.0
+theme = ExtResource("2_ixgsd")
+max_value = 1.0

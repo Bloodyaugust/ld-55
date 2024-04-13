@@ -12,6 +12,7 @@ const CAPTURE_THRESHOLD: float = 5.0
 @export var nav_target_player: Node2D
 
 @onready var _area2D: Area2D = %Area2D
+@onready var _progress_bar: ProgressBar = %ProgressBar
 
 var _team: GameConstants.TEAM = GameConstants.TEAM.NEUTRAL
 var _demons_in_waypoint: Array[Demon]
@@ -60,7 +61,7 @@ func _determine_state() -> void:
 
 func _process(delta) -> void:
 	if _state == STATE.CAPTURING:
-		_capture_progress += _demons_in_waypoint.size() * delta
+		_capture_progress = clamp(_capture_progress + _demons_in_waypoint.size() * delta, 0.0, CAPTURE_THRESHOLD)
 	
 	if _capture_progress >= CAPTURE_THRESHOLD:
 		for demon: Demon in _demons_in_waypoint:
@@ -68,6 +69,8 @@ func _process(delta) -> void:
 		_team = _demons_in_waypoint.front().team
 		_capture_progress = 0.0
 		_state = STATE.CAPTURED
+	
+	_progress_bar.value = _capture_progress / CAPTURE_THRESHOLD
 
 
 func _ready():
