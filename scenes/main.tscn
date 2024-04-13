@@ -12,6 +12,8 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_4pt6e")]
+position = Vector2(-22.5, 208.5)
+scale = Vector2(0.296875, 9.01563)
 
 [node name="UIRoot" type="CanvasLayer" parent="."]
 
