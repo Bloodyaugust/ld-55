@@ -6,7 +6,9 @@ const GAME_STARTING = "GAME_STARTING"
 
 enum TEAM {
 	AI,
-	PLAYER
+	PLAYER,
+	NEUTRAL
 }
 
 const DEMONS_GROUP = "Demon"
+

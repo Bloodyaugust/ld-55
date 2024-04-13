@@ -47,6 +47,7 @@ func _physics_process(delta):
 			if GDUtil.reference_safe(_current_nav_target):
 				if is_equal_approx(global_position.distance_to(_current_nav_target.global_position), 0.0):
 					_current_nav_target = null
+					_state = DEMON_STATES.IDLE
 				else:
 					var _move_direction: Vector2 = global_position.direction_to(_current_nav_target.global_position)
 
