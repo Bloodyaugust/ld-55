@@ -13,3 +13,6 @@ enum TEAM {
 const DAMAGEABLE_GROUP = "Damageable"
 const DEMONS_GROUP = "Demon"
 
+const STORE_KEYS := {
+	"SELECTED_SUMMONING_AREA": "selected_summoning_area",
+}

@@ -32,3 +32,8 @@ func _on_store_state_changed(state_key: String, substate: Variant) -> void:
 
 func _ready():
 	Store.state_changed.connect(_on_store_state_changed)
+
+
+func _unhandled_input(event) -> void:
+	if event.is_action_released("clear_selection"):
+		Store.set_state(GameConstants.STORE_KEYS.SELECTED_SUMMONING_AREA, null)
