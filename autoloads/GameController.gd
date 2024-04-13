@@ -10,12 +10,12 @@ func tower_destroyed(team: GameConstants.TEAM) -> void:
 	
 	match team:
 		GameConstants.TEAM.AI:
-			print("Player Won!")
+			Store.set_state("winner", GameConstants.TEAM.PLAYER)
 		GameConstants.TEAM.PLAYER:
-			print("AI Won!")
+			Store.set_state("winner", GameConstants.TEAM.AI)
 	
 	Store.set_state("game", GameConstants.GAME_OVER)
-	ViewController.set_client_view(ViewController.CLIENT_VIEWS.MAIN_MENU)
+	ViewController.set_client_view(ViewController.CLIENT_VIEWS.SCORE)
 
 
 func _on_store_state_changed(state_key: String, substate: Variant) -> void:
