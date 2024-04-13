@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_xqfc3")
+name = "Imp"
 health = 50.0
 move_speed = 300.0
 damage = 5.0

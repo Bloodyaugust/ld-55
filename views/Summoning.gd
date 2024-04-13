@@ -19,7 +19,8 @@ func _ready():
 	Store.state_changed.connect(self._on_state_changed)
 	
 	for demon: DemonData in GameConstants.DEMON_DATA.values():
-		var _new_button: TextureButton = summon_button_scene.instantiate()
+		var _new_button: Control = summon_button_scene.instantiate()
 
 		_new_button.pressed.connect(func (): _on_summon_button_pressed(demon))
+		_new_button.data = demon
 		_summon_buttons_container.add_child(_new_button)

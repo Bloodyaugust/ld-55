@@ -1,6 +1,7 @@
 extends Resource
 class_name DemonData
 
+@export var name: String
 @export var health: float
 @export var move_speed: float
 @export var damage: float
