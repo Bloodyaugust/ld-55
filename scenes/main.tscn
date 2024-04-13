@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfjaqu2i4i63i"]
+[gd_scene load_steps=14 format=3 uid="uid://bfjaqu2i4i63i"]
 
 [ext_resource type="Script" path="res://views/FPS.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="2"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dlkibh8vjr7pd" path="res://doodads/waypoint.tscn" id="10_7pb7x"]
 [ext_resource type="Resource" uid="uid://d5syclv4fn5d" path="res://data/demons/ranged.tres" id="10_63i84"]
 [ext_resource type="PackedScene" uid="uid://bd3ut506sq25t" path="res://actors/tower.tscn" id="12_envv2"]
+[ext_resource type="Resource" uid="uid://c3vrhtepihlxt" path="res://data/tower.tres" id="13_n4vmj"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -129,26 +130,33 @@ text = "Main Menu"
 mouse_drag = false
 zoom_max = 1.0
 
-[node name="Demon" parent="." instance=ExtResource("8_rv5sd")]
-position = Vector2(-176, -11)
+[node name="AIDemon" parent="." instance=ExtResource("8_rv5sd")]
+position = Vector2(-200, 0)
 data = ExtResource("9_8v6gk")
 
-[node name="Demon2" parent="." instance=ExtResource("8_rv5sd")]
-position = Vector2(213, -4)
+[node name="PlayerDemon" parent="." instance=ExtResource("8_rv5sd")]
+position = Vector2(200, 0)
 data = ExtResource("10_63i84")
 team = 1
 
 [node name="AIWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai") instance=ExtResource("10_7pb7x")]
-position = Vector2(-182, 0)
+position = Vector2(-200, 0)
 nav_target_ai = NodePath("../ContestedWaypoint")
 
 [node name="ContestedWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("10_7pb7x")]
-position = Vector2(1, 182)
+position = Vector2(0, 150)
 nav_target_ai = NodePath("../PlayerWaypoint2")
 nav_target_player = NodePath("../AIWaypoint")
 
 [node name="PlayerWaypoint2" parent="." node_paths=PackedStringArray("nav_target_player") instance=ExtResource("10_7pb7x")]
-position = Vector2(214, -2)
+position = Vector2(200, 0)
 nav_target_player = NodePath("../ContestedWaypoint")
 
-[node name="Tower" parent="." instance=ExtResource("12_envv2")]
+[node name="AITower" parent="." instance=ExtResource("12_envv2")]
+position = Vector2(-500, 0)
+data = ExtResource("13_n4vmj")
+
+[node name="PlayerTower" parent="." instance=ExtResource("12_envv2")]
+position = Vector2(500, 0)
+data = ExtResource("13_n4vmj")
+team = 1
