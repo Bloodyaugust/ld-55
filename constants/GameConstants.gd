@@ -10,5 +10,6 @@ enum TEAM {
 	NEUTRAL
 }
 
+const DAMAGEABLE_GROUP = "Damageable"
 const DEMONS_GROUP = "Demon"
 

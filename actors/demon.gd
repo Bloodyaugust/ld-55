@@ -31,7 +31,7 @@ func set_nav_target(new_target: Node2D) -> void:
 	_current_nav_target = new_target
 
 
-func _attack(attack_target: Demon) -> void:
+func _attack(attack_target: Node2D) -> void:
 	attack_target.damage(data.damage)
 	
 	_attack_cooldown = data.attack_interval
@@ -64,23 +64,29 @@ func _physics_process(delta):
 
 func _process(delta):
 	_attack_cooldown = clamp(_attack_cooldown - delta, 0.0, data.attack_interval)
-	var _group_nodes := get_tree().get_nodes_in_group(GameConstants.DEMONS_GROUP)
-	var _demons: Array[Demon] = []
-	_demons.assign(_group_nodes)
-	var _enemy_demons: Array[Demon] = _demons.filter(func (checking_demon: Demon): return team != checking_demon.team)
-	var _enemy_demons_in_range: Array[Demon] = _enemy_demons.filter(func (checking_demon: Demon): return global_position.distance_to(checking_demon.global_position) <= data.attack_range)
+	#var _demon_group_nodes := get_tree().get_nodes_in_group(GameConstants.DEMONS_GROUP)
+	var _damageable_group_nodes := get_tree().get_nodes_in_group(GameConstants.DAMAGEABLE_GROUP)
+
+	#var _demons: Array[Demon] = []
+	#_demons.assign(_demon_group_nodes)
+
+	var _damageables: Array[Node2D] = []
+	_damageables.assign(_damageable_group_nodes)
+
+	var _enemy_damageables: Array[Node2D] = _damageables.filter(func (checking_damageable: Node2D): return team != checking_damageable.team)
+	var _enemy_damageables_in_range: Array[Node2D] = _enemy_damageables.filter(func (checking_damageable: Node2D): return global_position.distance_to(checking_damageable.global_position) <= data.attack_range)
 	
 	match _state:
 		DEMON_STATES.IDLE:
-			if _enemy_demons_in_range.size() > 0:
+			if _enemy_damageables_in_range.size() > 0:
 				_state = DEMON_STATES.ATTACKING
 			elif GDUtil.reference_safe(_current_nav_target):
 				_state = DEMON_STATES.MOVING
 		DEMON_STATES.MOVING:
-			if _enemy_demons_in_range.size() > 0:
+			if _enemy_damageables_in_range.size() > 0:
 				_state = DEMON_STATES.ATTACKING
 		DEMON_STATES.ATTACKING:
-			if _enemy_demons_in_range.size() == 0:
+			if _enemy_damageables_in_range.size() == 0:
 				_state = DEMON_STATES.IDLE
 			elif is_equal_approx(_attack_cooldown, 0.0):
-				_attack(_enemy_demons_in_range.front())
+				_attack(_enemy_damageables_in_range.front())

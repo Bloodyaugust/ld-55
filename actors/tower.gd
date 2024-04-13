@@ -3,11 +3,23 @@ extends Node2D
 @export var data: TowerData
 @export var team: GameConstants.TEAM
 
-# Called when the node enters the scene tree for the first time.
+@onready var _health_bar: ProgressBar = %HealthBar
+
+var _health: float
+
+
+func damage(amount: float) -> void:
+	_health -= amount
+	_health_bar.value = _health / data.health
+	
+	if _health <= 0.0:
+		queue_free()
+
+
 func _ready():
-	pass # Replace with function body.
+	_health = data.health
+	_health_bar.value = _health / data.health
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

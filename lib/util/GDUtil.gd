@@ -26,7 +26,7 @@ static func queue_free_children(node):
 		n.queue_free()
 
 
-static func reference_safe(node: Node) -> bool:
+static func reference_safe(node: Variant) -> bool:
 	return node != null && !node.is_queued_for_deletion() && is_instance_valid(node)
 
 

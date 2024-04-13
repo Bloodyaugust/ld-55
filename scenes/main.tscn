@@ -139,17 +139,19 @@ position = Vector2(200, 0)
 data = ExtResource("10_63i84")
 team = 1
 
-[node name="AIWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai") instance=ExtResource("10_7pb7x")]
+[node name="AIWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("10_7pb7x")]
 position = Vector2(-200, 0)
 nav_target_ai = NodePath("../ContestedWaypoint")
+nav_target_player = NodePath("../AITower")
 
 [node name="ContestedWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("10_7pb7x")]
 position = Vector2(0, 150)
 nav_target_ai = NodePath("../PlayerWaypoint2")
 nav_target_player = NodePath("../AIWaypoint")
 
-[node name="PlayerWaypoint2" parent="." node_paths=PackedStringArray("nav_target_player") instance=ExtResource("10_7pb7x")]
+[node name="PlayerWaypoint2" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("10_7pb7x")]
 position = Vector2(200, 0)
+nav_target_ai = NodePath("../PlayerTower")
 nav_target_player = NodePath("../ContestedWaypoint")
 
 [node name="AITower" parent="." instance=ExtResource("12_envv2")]
