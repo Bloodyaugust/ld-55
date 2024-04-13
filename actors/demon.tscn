@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ajtp"]
 radius = 27.0
 
-[node name="Demon" type="Node2D"]
+[node name="Demon" type="Node2D" groups=["Demon"]]
 script = ExtResource("1_ga683")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -8,3 +8,5 @@ enum TEAM {
 	AI,
 	PLAYER
 }
+
+const DEMONS_GROUP = "Demon"
