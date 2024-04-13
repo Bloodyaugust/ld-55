@@ -6,7 +6,7 @@ const summon_button_scene: PackedScene = preload("res://views/components/summon_
 
 
 func _on_summon_button_pressed(demon: DemonData) -> void:
-	print("Demon summoned: ", demon)
+	GameController.summon_demon(Store.state[GameConstants.STORE_KEYS.SELECTED_SUMMONING_AREA], demon)
 
 
 func _on_state_changed(state_key: String, substate: Variant) -> void:

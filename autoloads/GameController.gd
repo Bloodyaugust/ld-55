@@ -1,8 +1,20 @@
 extends Node
 
 const battlefield_scene: PackedScene = preload("res://scenes/battlefield.tscn")
+const demon_scene: PackedScene = preload("res://actors/demon.tscn")
 
 var _current_game_scene: Variant = null
+
+
+func summon_demon(summoning_area: Node2D, demon: DemonData) -> void:
+	var _new_demon: Demon = demon_scene.instantiate() as Demon
+	
+	_new_demon.data = demon
+	_new_demon.team = summoning_area.team
+	_new_demon.global_position = summoning_area.global_position
+	
+	_current_game_scene.add_child(_new_demon)
+	_new_demon.set_nav_target(summoning_area.nav_target)
 
 
 func tower_destroyed(team: GameConstants.TEAM) -> void:
