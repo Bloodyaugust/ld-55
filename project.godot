@@ -21,6 +21,7 @@ Store="*res://autoloads/Store.gd"
 ClientConstants="*res://constants/ClientConstants.gd"
 GameConstants="*res://constants/GameConstants.gd"
 ViewController="*res://autoloads/ViewController.gd"
+GameController="*res://autoloads/GameController.gd"
 
 [display]
 

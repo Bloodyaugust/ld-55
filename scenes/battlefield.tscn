@@ -1,14 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvobys7nxd43m"]
+[gd_scene load_steps=7 format=3 uid="uid://dvobys7nxd43m"]
 
 [ext_resource type="PackedScene" uid="uid://dfubdup154sny" path="res://actors/demon.tscn" id="1_nyt11"]
 [ext_resource type="Resource" uid="uid://bfe75pli6dvit" path="res://data/demons/melee.tres" id="2_0tna0"]
+[ext_resource type="Resource" uid="uid://d5syclv4fn5d" path="res://data/demons/ranged.tres" id="3_5lpto"]
+[ext_resource type="PackedScene" uid="uid://dlkibh8vjr7pd" path="res://doodads/waypoint.tscn" id="4_d8jk6"]
+[ext_resource type="PackedScene" uid="uid://bd3ut506sq25t" path="res://actors/tower.tscn" id="5_duubj"]
+[ext_resource type="Resource" uid="uid://c3vrhtepihlxt" path="res://data/tower.tres" id="6_xsqej"]
 
 [node name="Battlefield" type="Node2D"]
 
-[node name="Nav Point 1" type="Node2D" parent="."]
-position = Vector2(700, 323)
-
-[node name="Demon" parent="." node_paths=PackedStringArray("initial_nav_target") instance=ExtResource("1_nyt11")]
-position = Vector2(312, 306)
+[node name="AIDemon" parent="." instance=ExtResource("1_nyt11")]
+position = Vector2(-200, 0)
 data = ExtResource("2_0tna0")
-initial_nav_target = NodePath("")
+
+[node name="PlayerDemon" parent="." instance=ExtResource("1_nyt11")]
+position = Vector2(200, 0)
+data = ExtResource("3_5lpto")
+team = 1
+
+[node name="AIWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
+position = Vector2(-200, 0)
+nav_target_ai = NodePath("../ContestedWaypoint")
+nav_target_player = NodePath("../AITower")
+
+[node name="ContestedWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
+position = Vector2(0, 150)
+nav_target_ai = NodePath("../PlayerWaypoint")
+nav_target_player = NodePath("../AIWaypoint")
+
+[node name="PlayerWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
+position = Vector2(200, 0)
+nav_target_ai = NodePath("../PlayerTower")
+nav_target_player = NodePath("../ContestedWaypoint")
+
+[node name="AITower" parent="." instance=ExtResource("5_duubj")]
+position = Vector2(-500, 0)
+data = ExtResource("6_xsqej")
+
+[node name="PlayerTower" parent="." instance=ExtResource("5_duubj")]
+position = Vector2(500, 0)
+data = ExtResource("6_xsqej")
+team = 1

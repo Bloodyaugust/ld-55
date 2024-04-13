@@ -34,7 +34,7 @@ func _initialize():
 				if !state.debug
 				else ViewController.CLIENT_VIEWS.MAIN_MENU
 			),
-			ViewController.TRANSITION_TYPES.FADE
+			ViewController.TRANSITION_TYPES.SLIDE
 		))
 		. call_deferred()
 	)

@@ -13,7 +13,7 @@ func damage(amount: float) -> void:
 	_health_bar.value = _health / data.health
 	
 	if _health <= 0.0:
-		queue_free()
+		GameController.tower_destroyed(team)
 
 
 func _ready():
