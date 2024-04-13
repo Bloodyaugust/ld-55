@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd3ut506sq25t"]
+
+[ext_resource type="Script" path="res://actors/tower.gd" id="1_5vi0c"]
+[ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="1_ow1uf"]
+
+[node name="Tower" type="Node2D" groups=["Attackable", "Tower"]]
+script = ExtResource("1_5vi0c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_ow1uf")

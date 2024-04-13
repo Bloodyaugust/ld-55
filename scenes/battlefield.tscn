@@ -8,7 +8,8 @@
 [node name="Nav Point 1" type="Node2D" parent="."]
 position = Vector2(700, 323)
 
-[node name="Demon" parent="." node_paths=PackedStringArray("initial_nav_target") instance=ExtResource("1_nyt11")]
+[node name="Demon" parent="." instance=ExtResource("1_nyt11")]
 position = Vector2(312, 306)
 data = ExtResource("2_0tna0")
-initial_nav_target = NodePath("../Nav Point 1")
+initial_nav_target = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(700, 323),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":null)
+

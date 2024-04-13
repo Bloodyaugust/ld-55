@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TowerData" load_steps=2 format=3 uid="uid://c3vrhtepihlxt"]
+
+[ext_resource type="Script" path="res://data/tower.gd" id="1_f11le"]
+
+[resource]
+script = ExtResource("1_f11le")
+health = 50.0
+sight_range = 1000.0
