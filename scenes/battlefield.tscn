@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvobys7nxd43m"]
+[gd_scene load_steps=10 format=3 uid="uid://dvobys7nxd43m"]
 
 [ext_resource type="PackedScene" uid="uid://dlkibh8vjr7pd" path="res://doodads/waypoint.tscn" id="4_d8jk6"]
 [ext_resource type="PackedScene" uid="uid://bd3ut506sq25t" path="res://actors/tower.tscn" id="5_duubj"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c2rr6cgguw8qn" path="res://doodads/summoning_area.tscn" id="7_6in7d"]
 [ext_resource type="Theme" uid="uid://co811ue55i33m" path="res://resources/base_theme.tres" id="8_mqmnd"]
 [ext_resource type="Script" path="res://scripts/controllers/ai_controller.gd" id="8_oyi0q"]
+[ext_resource type="Script" path="res://views/SummoningTimer.gd" id="9_2lvl7"]
 [ext_resource type="Script" path="res://views/Summoning.gd" id="9_bs3c2"]
 [ext_resource type="Script" path="res://views/Resources.gd" id="10_0xkqh"]
 
@@ -143,3 +144,21 @@ script = ExtResource("10_0xkqh")
 unique_name_in_owner = true
 layout_mode = 2
 text = "100 Monies"
+
+[node name="SummoningTimer" type="PanelContainer" parent="HUDRoot"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -77.5
+offset_right = 77.5
+offset_bottom = 23.0
+grow_horizontal = 2
+script = ExtResource("9_2lvl7")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUDRoot/SummoningTimer"]
+layout_mode = 2
+
+[node name="SummoningTimerLabel" type="Label" parent="HUDRoot/SummoningTimer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Time to summoning: "

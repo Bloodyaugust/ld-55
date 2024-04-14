@@ -62,6 +62,7 @@ func _update_resource_totals(delta) -> void:
 
 func _update_summoning_cooldown(delta) -> void:
 	_summoning_cooldown = clamp(_summoning_cooldown - delta, 0.0, wave_duration)
+	Store.set_state(GameConstants.STORE_KEYS.TIME_TO_SUMMONING, _summoning_cooldown)
  
 func _on_store_state_changed(state_key: String, substate: Variant) -> void:
 	match state_key:

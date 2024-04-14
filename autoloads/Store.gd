@@ -22,7 +22,7 @@ func set_state(state_key: String, new_state) -> void:
 	state[state_key] = new_state
 	emit_signal("state_changed", state_key, state[state_key])
 	
-	if state_key != GameConstants.STORE_KEYS.RESOURCES:
+	if state_key != GameConstants.STORE_KEYS.RESOURCES and state_key != GameConstants.STORE_KEYS.TIME_TO_SUMMONING:
 		print("State changed: ", state_key, " -> ", state[state_key])
 
 
