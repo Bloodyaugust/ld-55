@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfubdup154sny"]
+[gd_scene load_steps=13 format=3 uid="uid://dfubdup154sny"]
 
 [ext_resource type="Script" path="res://actors/demon.gd" id="1_ga683"]
 [ext_resource type="Texture2D" uid="uid://d3ta8rmfu0l25" path="res://sprites/demons/imp_blue.png" id="2_dtj1y"]
+[ext_resource type="Texture2D" uid="uid://f8leup7xcela" path="res://sprites/demons/shadow.png" id="2_w671n"]
 [ext_resource type="Theme" uid="uid://co811ue55i33m" path="res://resources/base_theme.tres" id="3_t4eyg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ajtp"]
@@ -136,6 +137,12 @@ _data = {
 
 [node name="Demon" type="Node2D" groups=["Damageable", "Demon"]]
 script = ExtResource("1_ga683")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1, 34)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_w671n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true

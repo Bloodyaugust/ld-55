@@ -330,7 +330,11 @@ stretch_mode = 5
 [node name="Label6" type="Label" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"LargeLabel"
-text = "Good luck out there on that battlefield, Summoner!"
+text = "The camera can be moved with wasd, arrow keys, or using right-click and dragging. Summoning circles
+can be accessed with the 1, 2, and 3 keys in addition to being clicked. With a summoning circle
+selected, you can summon a Grunt with z, an Imp with x, and Harpy with c (in addition to clicking them).
+
+Good luck out there on the battlefield, Summoner!"
 horizontal_alignment = 1
 
 [node name="MainMenuTutorial" type="Button" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer"]
