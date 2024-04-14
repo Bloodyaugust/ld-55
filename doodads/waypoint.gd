@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Waypoint
+
 enum STATE {
 	CAPTURED,
 	CAPTURING,
@@ -10,6 +12,7 @@ const CAPTURE_THRESHOLD: float = 5.0
 
 @export var nav_target_ai: Node2D
 @export var nav_target_player: Node2D
+@export var resource_rate: float
 
 @onready var _area2D: Area2D = %Area2D
 @onready var _progress_bar: ProgressBar = %ProgressBar
@@ -84,6 +87,7 @@ func _process(delta) -> void:
 		_capture_progress = 0.0
 		_state = STATE.CAPTURED
 		_update_team_label()
+		GameController.waypoint_captured()
 	
 	_progress_bar.value = _capture_progress / CAPTURE_THRESHOLD
 
