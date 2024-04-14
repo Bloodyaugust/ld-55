@@ -6,7 +6,7 @@ extends Control
 func _on_state_changed(state_key: String, substate: Variant):
 	match state_key:
 		GameConstants.STORE_KEYS.TIME_TO_SUMMONING:
-			_summoning_timer.text = "Time to summoning: %2d seconds" % substate
+			_summoning_timer.text = "Time to summoning: %02d seconds" % substate
 
 
 func _ready():
