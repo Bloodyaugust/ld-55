@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvobys7nxd43m"]
+[gd_scene load_steps=11 format=3 uid="uid://dvobys7nxd43m"]
 
 [ext_resource type="PackedScene" uid="uid://dfubdup154sny" path="res://actors/demon.tscn" id="1_nyt11"]
 [ext_resource type="Resource" uid="uid://bfe75pli6dvit" path="res://data/demons/melee.tres" id="2_0tna0"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c2rr6cgguw8qn" path="res://doodads/summoning_area.tscn" id="7_6in7d"]
 [ext_resource type="Theme" uid="uid://co811ue55i33m" path="res://resources/base_theme.tres" id="8_mqmnd"]
 [ext_resource type="Script" path="res://views/Summoning.gd" id="9_bs3c2"]
+[ext_resource type="Script" path="res://views/Resources.gd" id="10_0xkqh"]
 
 [node name="Battlefield" type="Node2D"]
 
@@ -80,3 +81,17 @@ layout_mode = 2
 [node name="SummonButtonsContainer" type="HBoxContainer" parent="HUDRoot/Summoning/CenterContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="Resources" type="MarginContainer" parent="HUDRoot"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+script = ExtResource("10_0xkqh")
+
+[node name="ResourcesLabel" type="Label" parent="HUDRoot/Resources"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100 Monies"
