@@ -32,10 +32,11 @@ func _ready():
 	gui_input.connect(_on_gui_input)
 	_texture.texture = data.sprite
 	
-	_description.text = "{name}\r\nCost: {cost}\r\nDamage: {dps}/sec\r\nAttack Type: {attack}\r\nArmor Type: {armor}".format({
+	_description.text = "{name}\r\nCost: {cost}\r\nHealth: {health}\r\nDamage: {dps}/sec\r\nAttack Type: {attack}\r\nArmor Type: {armor}".format({
 		"name": data.name,
 		"cost": data.cost,
+		"health": data.health,
 		"dps": "%1.f" % (data.damage / data.attack_interval),
-		"attack": data.damage_type,
-		"armor": data.armor_type
+		"attack": GameConstants.DAMAGE_TYPE_NAMES[data.damage_type],
+		"armor": GameConstants.ARMOR_TYPE_NAMES[data.armor_type]
 	})
