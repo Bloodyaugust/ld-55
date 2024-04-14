@@ -16,6 +16,7 @@ const PUSH_DISTANCE: float = 50.0
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 @onready var _health_bar: ProgressBar = %ProgressBar
 @onready var _label: Label = %Label
+@onready var _sprite: Sprite2D = %Sprite2D
 
 var _attack_cooldown: float
 var _current_nav_target: Variant
@@ -70,6 +71,7 @@ func _ready():
 	_health_bar.value = _health / data.health
 	_label.text = data.name
 	_current_nav_target = initial_nav_target
+	_sprite.texture = data.sprite
 
 
 func _physics_process(delta):

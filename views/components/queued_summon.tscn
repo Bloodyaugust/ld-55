@@ -16,6 +16,8 @@ text = "4x Harpy"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = ExtResource("1_88saf")
+expand_mode = 1
 stretch_mode = 5

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="DemonData" load_steps=3 format=3 uid="uid://bfe75pli6dvit"]
 
 [ext_resource type="Script" path="res://data/demon.gd" id="1_26a6s"]
-[ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="2_j0e8g"]
+[ext_resource type="Texture2D" uid="uid://6aytmcnqiasd" path="res://sprites/demons/grunt_blue.png" id="2_02lld"]
 
 [resource]
 script = ExtResource("1_26a6s")
@@ -11,7 +11,7 @@ move_speed = 300.0
 damage = 10.0
 attack_interval = 1.5
 cost = 20.0
-sprite = ExtResource("2_j0e8g")
+sprite = ExtResource("2_02lld")
 attack_range = 100.0
 sight_range = 0.0
 armor_type = 2
