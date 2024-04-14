@@ -12,13 +12,16 @@ func summon_demon(summoning_area: Node2D, demon: DemonData) -> void:
 	_new_demon.data = demon
 	_new_demon.team = summoning_area.team
 	_new_demon.global_position = summoning_area.global_position
-	
+
+	Store.state[GameConstants.STORE_KEYS.RESOURCES][_new_demon.team]["total"] = Store.state[GameConstants.STORE_KEYS.RESOURCES][_new_demon.team]["total"] - demon.cost
+	Store.set_state(GameConstants.STORE_KEYS.RESOURCES, Store.state[GameConstants.STORE_KEYS.RESOURCES])
+
 	_current_game_scene.add_child(_new_demon)
 	_new_demon.set_nav_target(summoning_area.nav_target)
 
 func waypoint_captured() -> void:
 	var _waypoints := get_tree().get_nodes_in_group(GameConstants.WAYPOINTS_GROUP)
-	var _resource_rates = _waypoints.reduce(func (accu, waypoint: Waypoint): 
+	var _resource_rates = _waypoints.reduce(func (accu, waypoint: Waypoint):
 		if waypoint._team != GameConstants.TEAM.NEUTRAL:
 			accu[waypoint._team] = accu[waypoint._team] + waypoint.resource_rate
 		return accu
