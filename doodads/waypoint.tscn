@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlkibh8vjr7pd"]
+[gd_scene load_steps=5 format=3 uid="uid://dlkibh8vjr7pd"]
 
 [ext_resource type="Script" path="res://doodads/waypoint.gd" id="1_mjwuc"]
+[ext_resource type="Texture2D" uid="uid://cmocbaqhjx2hi" path="res://sprites/building.png" id="2_7uxff"]
 [ext_resource type="Theme" uid="uid://co811ue55i33m" path="res://resources/base_theme.tres" id="2_ixgsd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_psthq"]
@@ -9,6 +10,11 @@ radius = 74.0608
 [node name="Waypoint" type="Node2D" groups=["Waypoints"]]
 script = ExtResource("1_mjwuc")
 resource_rate = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_7uxff")
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true

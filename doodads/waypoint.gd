@@ -8,6 +8,7 @@ enum STATE {
 	CONTESTED
 }
 
+const BASE_SCALE: Vector2 = Vector2(0.20, 0.20)
 const CAPTURE_THRESHOLD: float = 5.0
 
 @export var nav_target_ai: Node2D
@@ -98,3 +99,4 @@ func _ready():
 	_area2D.area_exited.connect(_on_area2D_exited)
 	_update_team_label()
 	_info.text = "+%1.f Resources/sec" % resource_rate
+	%Sprite2D.scale = BASE_SCALE + (Vector2(resource_rate, resource_rate) / 75)
