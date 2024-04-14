@@ -13,6 +13,7 @@ const PUSH_DISTANCE: float = 50.0
 @export var initial_nav_target: Node2D
 @export var team: GameConstants.TEAM
 
+@onready var _animation_player: AnimationPlayer = %AnimationPlayer
 @onready var _health_bar: ProgressBar = %ProgressBar
 @onready var _label: Label = %Label
 
@@ -57,6 +58,11 @@ func _attack(attack_target: Node2D) -> void:
 	attack_target.damage(data.damage, data.damage_type)
 	
 	_attack_cooldown = data.attack_interval
+	
+	if attack_target.global_position.x <= global_position.x:
+		_animation_player.play("attack_left")
+	else:
+		_animation_player.play("attack_right")
 
 
 func _ready():
@@ -110,11 +116,15 @@ func _process(delta):
 	
 	match _state:
 		DEMON_STATES.IDLE:
+			if _animation_player.current_animation != "idle" and !_animation_player.is_playing():
+				_animation_player.play("idle")
 			if _enemy_damageables_in_range.size() > 0:
 				_state = DEMON_STATES.ATTACKING
 			elif GDUtil.reference_safe(_current_nav_target):
 				_state = DEMON_STATES.MOVING
 		DEMON_STATES.MOVING:
+			if _animation_player.current_animation == "idle" and _animation_player.is_playing():
+				_animation_player.play("RESET")
 			if _enemy_damageables_in_range.size() > 0:
 				_state = DEMON_STATES.ATTACKING
 		DEMON_STATES.ATTACKING:
