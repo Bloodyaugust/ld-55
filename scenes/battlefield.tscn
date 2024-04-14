@@ -11,37 +11,86 @@
 
 [node name="Battlefield" type="Node2D"]
 
-[node name="AIWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
-position = Vector2(-200, 0)
-nav_target_ai = NodePath("../ContestedWaypoint")
-nav_target_player = NodePath("../AITower")
+[node name="Midlane" type="Node2D" parent="."]
 
-[node name="ContestedWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
-position = Vector2(0, 150)
+[node name="AIWaypoint" parent="Midlane" node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
+position = Vector2(-1000, 0)
+nav_target_ai = NodePath("../ContestedWaypoint")
+nav_target_player = NodePath("../../AITower")
+
+[node name="ContestedWaypoint" parent="Midlane" node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
 nav_target_ai = NodePath("../PlayerWaypoint")
 nav_target_player = NodePath("../AIWaypoint")
 
-[node name="PlayerWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
-position = Vector2(200, 0)
-nav_target_ai = NodePath("../PlayerTower")
+[node name="PlayerWaypoint" parent="Midlane" node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
+position = Vector2(1000, 0)
+nav_target_ai = NodePath("../../PlayerTower")
 nav_target_player = NodePath("../ContestedWaypoint")
 
+[node name="AISummoningArea" parent="Midlane" node_paths=PackedStringArray("nav_target") instance=ExtResource("7_6in7d")]
+position = Vector2(-1700, 0)
+nav_target = NodePath("../AIWaypoint")
+
+[node name="PlayerSummoningArea" parent="Midlane" node_paths=PackedStringArray("nav_target") instance=ExtResource("7_6in7d")]
+position = Vector2(1700, 0)
+nav_target = NodePath("../PlayerWaypoint")
+team = 1
+
+[node name="Toplane" type="Node2D" parent="."]
+position = Vector2(0, -500)
+
+[node name="AIWaypoint" parent="Toplane" node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
+position = Vector2(-600, 0)
+nav_target_ai = NodePath("../../Midlane/ContestedWaypoint")
+nav_target_player = NodePath("../../AITower")
+
+[node name="PlayerWaypoint" parent="Toplane" node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
+position = Vector2(600, 0)
+nav_target_ai = NodePath("../../PlayerTower")
+nav_target_player = NodePath("../../Midlane/ContestedWaypoint")
+
+[node name="AISummoningArea" parent="Toplane" node_paths=PackedStringArray("nav_target") instance=ExtResource("7_6in7d")]
+position = Vector2(-1800, 250)
+nav_target = NodePath("../AIWaypoint")
+
+[node name="PlayerSummoningArea" parent="Toplane" node_paths=PackedStringArray("nav_target") instance=ExtResource("7_6in7d")]
+position = Vector2(1800, 250)
+nav_target = NodePath("../PlayerWaypoint")
+team = 1
+
+[node name="Botlane" type="Node2D" parent="."]
+position = Vector2(0, 500)
+
+[node name="AIWaypoint" parent="Botlane" node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
+position = Vector2(-1000, 0)
+nav_target_ai = NodePath("../ContestedWaypoint")
+nav_target_player = NodePath("../../AITower")
+
+[node name="ContestedWaypoint" parent="Botlane" node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
+nav_target_ai = NodePath("../PlayerWaypoint")
+nav_target_player = NodePath("../AIWaypoint")
+
+[node name="PlayerWaypoint" parent="Botlane" node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
+position = Vector2(1000, 0)
+nav_target_ai = NodePath("../../PlayerTower")
+nav_target_player = NodePath("../ContestedWaypoint")
+
+[node name="AISummoningArea" parent="Botlane" node_paths=PackedStringArray("nav_target") instance=ExtResource("7_6in7d")]
+position = Vector2(-1800, -250)
+nav_target = NodePath("../AIWaypoint")
+
+[node name="PlayerSummoningArea" parent="Botlane" node_paths=PackedStringArray("nav_target") instance=ExtResource("7_6in7d")]
+position = Vector2(1800, -250)
+nav_target = NodePath("../PlayerWaypoint")
+team = 1
+
 [node name="AITower" parent="." instance=ExtResource("5_duubj")]
-position = Vector2(-500, 0)
+position = Vector2(-2000, 0)
 data = ExtResource("6_xsqej")
 
 [node name="PlayerTower" parent="." instance=ExtResource("5_duubj")]
-position = Vector2(500, 0)
+position = Vector2(2000, 0)
 data = ExtResource("6_xsqej")
-team = 1
-
-[node name="AISummoningArea" parent="." node_paths=PackedStringArray("nav_target") instance=ExtResource("7_6in7d")]
-position = Vector2(-350, 0)
-nav_target = NodePath("../AIWaypoint")
-
-[node name="AISummoningArea2" parent="." node_paths=PackedStringArray("nav_target") instance=ExtResource("7_6in7d")]
-position = Vector2(350, 0)
-nav_target = NodePath("../PlayerWaypoint")
 team = 1
 
 [node name="AIController" type="Node2D" parent="."]
