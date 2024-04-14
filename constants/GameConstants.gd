@@ -14,6 +14,7 @@ const RESOURCES_STARTING_TOTAL = 0.0
 const RESOURCES_STARTING_RATE = 5.0
 
 const WAYPOINTS_GROUP = "Waypoints"
+const SUMMONING_AREAS_GROUP = "SummoningArea"
 const DAMAGEABLE_GROUP = "Damageable"
 const DEMONS_GROUP = "Demon"
 

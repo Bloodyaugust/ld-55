@@ -1,26 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvobys7nxd43m"]
+[gd_scene load_steps=9 format=3 uid="uid://dvobys7nxd43m"]
 
-[ext_resource type="PackedScene" uid="uid://dfubdup154sny" path="res://actors/demon.tscn" id="1_nyt11"]
-[ext_resource type="Resource" uid="uid://bfe75pli6dvit" path="res://data/demons/melee.tres" id="2_0tna0"]
-[ext_resource type="Resource" uid="uid://d5syclv4fn5d" path="res://data/demons/ranged.tres" id="3_5lpto"]
 [ext_resource type="PackedScene" uid="uid://dlkibh8vjr7pd" path="res://doodads/waypoint.tscn" id="4_d8jk6"]
 [ext_resource type="PackedScene" uid="uid://bd3ut506sq25t" path="res://actors/tower.tscn" id="5_duubj"]
 [ext_resource type="Resource" uid="uid://c3vrhtepihlxt" path="res://data/tower.tres" id="6_xsqej"]
 [ext_resource type="PackedScene" uid="uid://c2rr6cgguw8qn" path="res://doodads/summoning_area.tscn" id="7_6in7d"]
 [ext_resource type="Theme" uid="uid://co811ue55i33m" path="res://resources/base_theme.tres" id="8_mqmnd"]
+[ext_resource type="Script" path="res://scripts/controllers/ai_controller.gd" id="8_oyi0q"]
 [ext_resource type="Script" path="res://views/Summoning.gd" id="9_bs3c2"]
 [ext_resource type="Script" path="res://views/Resources.gd" id="10_0xkqh"]
 
 [node name="Battlefield" type="Node2D"]
-
-[node name="AIDemon" parent="." instance=ExtResource("1_nyt11")]
-position = Vector2(-200, 0)
-data = ExtResource("2_0tna0")
-
-[node name="PlayerDemon" parent="." instance=ExtResource("1_nyt11")]
-position = Vector2(200, 0)
-data = ExtResource("3_5lpto")
-team = 1
 
 [node name="AIWaypoint" parent="." node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
 position = Vector2(-200, 0)
@@ -54,6 +43,9 @@ nav_target = NodePath("../AIWaypoint")
 position = Vector2(350, 0)
 nav_target = NodePath("../PlayerWaypoint")
 team = 1
+
+[node name="AIController" type="Node2D" parent="."]
+script = ExtResource("8_oyi0q")
 
 [node name="HUDRoot" type="CanvasLayer" parent="."]
 
