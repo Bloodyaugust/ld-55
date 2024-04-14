@@ -16,7 +16,6 @@ const projectile_scene: PackedScene = preload("res://actors/projectile.tscn")
 
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 @onready var _health_bar: ProgressBar = %ProgressBar
-@onready var _label: Label = %Label
 @onready var _sprite: Sprite2D = %Sprite2D
 
 
@@ -48,6 +47,8 @@ func damage(amount: float, type: GameConstants.DAMAGE_TYPE) -> void:
 	var _damage_modifier = damage_modifier[type][data.armor_type]
 	_health = clamp(_health - (amount * _damage_modifier), 0.0, data.health)
 	_health_bar.value = _health / data.health
+	
+	_health_bar.visible = true
 	
 	if _health <= 0.0:
 		queue_free()
@@ -89,7 +90,6 @@ func _attack(attack_target: Node2D) -> void:
 func _ready():
 	_health = data.health
 	_health_bar.value = _health / data.health
-	_label.text = data.name
 	_current_nav_target = initial_nav_target
 	
 	if team == GameConstants.TEAM.AI:

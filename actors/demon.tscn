@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfubdup154sny"]
+[gd_scene load_steps=12 format=3 uid="uid://dfubdup154sny"]
 
 [ext_resource type="Script" path="res://actors/demon.gd" id="1_ga683"]
 [ext_resource type="Texture2D" uid="uid://d3ta8rmfu0l25" path="res://sprites/demons/imp_blue.png" id="2_dtj1y"]
@@ -6,6 +6,12 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ajtp"]
 radius = 27.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qi3t8"]
+bg_color = Color(0.831373, 0, 0.121569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kc5t"]
+bg_color = Color(0, 0.643137, 0.133333, 1)
 
 [sub_resource type="Animation" id="Animation_8d0ut"]
 length = 0.001
@@ -144,21 +150,17 @@ shape = SubResource("CircleShape2D_2ajtp")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(100, 0)
-offset_left = -48.0
-offset_top = 37.0
-offset_right = 52.0
-offset_bottom = 64.0
+offset_left = -53.0
+offset_top = 70.0
+offset_right = 47.0
+offset_bottom = 97.0
 theme = ExtResource("3_t4eyg")
+theme_override_styles/background = SubResource("StyleBoxFlat_qi3t8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1kc5t")
 max_value = 1.0
-
-[node name="Label" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = -21.0
-offset_top = -49.0
-offset_right = 19.0
-offset_bottom = -30.0
-horizontal_alignment = 1
+show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

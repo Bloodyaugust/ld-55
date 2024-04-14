@@ -30,6 +30,7 @@ theme = ExtResource("3_gcfse")
 theme_override_styles/background = SubResource("StyleBoxFlat_wf0im")
 theme_override_styles/fill = SubResource("StyleBoxFlat_b0ygv")
 max_value = 1.0
+show_percentage = false
 
 [node name="ProjectileSpawn" type="Node2D" parent="."]
 unique_name_in_owner = true
