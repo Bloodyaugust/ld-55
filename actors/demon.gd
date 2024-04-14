@@ -12,6 +12,7 @@ enum DEMON_STATES {
 @export var team: GameConstants.TEAM
 
 @onready var _health_bar: ProgressBar = %ProgressBar
+@onready var _label: Label = %Label
 
 var _attack_cooldown: float
 var _current_nav_target: Variant
@@ -58,6 +59,7 @@ func _attack(attack_target: Node2D) -> void:
 func _ready():
 	_health = data.health
 	_health_bar.value = _health / data.health
+	_label.text = data.name
 	_current_nav_target = initial_nav_target
 
 
