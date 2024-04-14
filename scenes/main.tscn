@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfjaqu2i4i63i"]
+[gd_scene load_steps=16 format=3 uid="uid://bfjaqu2i4i63i"]
 
 [ext_resource type="Script" path="res://views/FPS.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="2"]
@@ -6,8 +6,15 @@
 [ext_resource type="Script" path="res://views/MainMenu.gd" id="4"]
 [ext_resource type="PackedScene" path="res://lib/BetterCam.tscn" id="5"]
 [ext_resource type="Script" path="res://views/Splash.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://crgjvjhd7k8mf" path="res://sprites/summoning_area_blue.png" id="7_ck85m"]
+[ext_resource type="Script" path="res://views/Tutorial.gd" id="7_gtktm"]
 [ext_resource type="Script" path="res://scenes/Score.gd" id="7_rur0v"]
 [ext_resource type="Script" path="res://views/About.gd" id="7_xk6j8"]
+[ext_resource type="Texture2D" uid="uid://cmocbaqhjx2hi" path="res://sprites/building.png" id="8_jtsw3"]
+[ext_resource type="Texture2D" uid="uid://6aytmcnqiasd" path="res://sprites/demons/grunt_blue.png" id="9_uaxyv"]
+[ext_resource type="Texture2D" uid="uid://cw8f3w0gibusf" path="res://sprites/demons/harpy_blue.png" id="10_7mk6u"]
+[ext_resource type="Texture2D" uid="uid://d3ta8rmfu0l25" path="res://sprites/demons/imp_blue.png" id="11_bgy5y"]
+[ext_resource type="Texture2D" uid="uid://bobmaiuneq51k" path="res://sprites/tower_blue.png" id="12_y2q47"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -50,6 +57,12 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Play"
+
+[node name="Tutorial" type="Button" parent="UIRoot/MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Tutorial"
 
 [node name="About" type="Button" parent="UIRoot/MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -113,10 +126,214 @@ horizontal_alignment = 1
 [node name="Label2" type="Label" parent="UIRoot/About/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"LargeLabel"
-text = "Made by: Greyson Richey
+text = "Credits
+
+Greyson Richey: Design, Code
+Jason Carter: Design, Code, Music
+Taylor Nichols: Design, Art
+
 Made with Godot"
+horizontal_alignment = 1
 
 [node name="MainMenu" type="Button" parent="UIRoot/About/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Tutorial" type="MarginContainer" parent="UIRoot"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_1ffbx")
+script = ExtResource("7_gtktm")
+
+[node name="PanelContainer" type="PanelContainer" parent="UIRoot/Tutorial"]
+custom_minimum_size = Vector2(800, 400)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UIRoot/Tutorial/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIRoot/Tutorial/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"H1"
+text = "Tutorial"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LargeLabel"
+text = "Welcome, Summoner!
+
+In this game, you are the blue team. Your objective is to destroy the enemy tower,
+without losing your own. You can accomplish this by summoning demons
+along one of 3 lanes: top, middle, and bottom. As your demons progress down
+the lane, they will capture cities which increase your resource income. More
+resources means more demons! More demons means knocking down the 
+enemy tower, and winning the game. Scroll down to read more!
+"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label3" type="Label" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LargeLabel"
+text = "To summon a demon, left-click on a blue summoning circle, 
+like the one to right."
+
+[node name="TextureRect" type="TextureRect" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("7_ck85m")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label4" type="Label" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LargeLabel"
+text = "When a demon is selected from the options, it will be queued for summoning.
+All demon summonings for both teams will occur at the same time,
+once the summoning timer reaches zero. The time until the next summoning
+is indicated at the top of the screen.
+
+After being summoned, demons progress down the lane their summoning circle
+is next to. They will capture any cities they come across that are not already
+owned by their team, and attack any other demons from the enemy team."
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label3" type="Label" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LargeLabel"
+text = "Cities look like the image to the right. Capturing them provides an
+increase in resource income! You can see your income in the
+top-right corner of the screen."
+
+[node name="TextureRect" type="TextureRect" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("8_jtsw3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label5" type="Label" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LargeLabel"
+text = "Demons have different cost, health, range, damage, damage type, and armor type.
+In small numbers, there is a rock-paper-scissors relationship between
+the different demons, but in larger numbers, certain compositions may be more
+advantageous than others."
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label3" type="Label" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LargeLabel"
+text = "The Grunt is your basic melee unit. It can take a lot of damage and
+has heavy armor, but is weak to the attack of the Harpy. They are
+good at countering Imps."
+
+[node name="TextureRect" type="TextureRect" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("9_uaxyv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label3" type="Label" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LargeLabel"
+text = "The Harpy is a flying unit with light armor, a high attack speed, and
+piercing damage. This makes it the perfect counter to the Grunt!
+However, it has very little health, and is easily countered by Imps."
+
+[node name="TextureRect" type="TextureRect" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("10_7mk6u")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label3" type="Label" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LargeLabel"
+text = "The Imp is a ranged attacker whose magical damage ignores all
+types of armor, but does not receive a bonus against any type either.
+That makes the imp a good all-around damage dealer, even if it is
+particularly frail, whose DPS may be lower than others. When in 
+large enough groups, these demons are very difficult to counter."
+
+[node name="TextureRect" type="TextureRect" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("11_bgy5y")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label3" type="Label" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LargeLabel"
+text = "The game is won by destroying the tower of your enemy. Counter
+their units, secure cities where possible, and use the summoning
+timer and safe city route to your advantage."
+
+[node name="TextureRect" type="TextureRect" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("12_y2q47")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label6" type="Label" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LargeLabel"
+text = "Good luck out there on that battlefield, Summoner!"
+horizontal_alignment = 1
+
+[node name="MainMenuTutorial" type="Button" parent="UIRoot/Tutorial/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Main Menu"

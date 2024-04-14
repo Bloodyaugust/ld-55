@@ -1,11 +1,16 @@
 extends Control
 
 @onready var _about_button: Button = %About
+@onready var _tutorial_button: Button = %Tutorial
 @onready var _play_button: Button = %Play
 
 
 func _on_about_button_pressed() -> void:
 	ViewController.set_client_view(ViewController.CLIENT_VIEWS.ABOUT)
+
+
+func _on_tutorial_button_pressed() -> void:
+	ViewController.set_client_view(ViewController.CLIENT_VIEWS.TUTORIAL)
 
 
 func _on_play_button_pressed() -> void:
@@ -14,6 +19,7 @@ func _on_play_button_pressed() -> void:
 
 func _ready():
 	_about_button.connect("pressed", self._on_about_button_pressed)
+	_tutorial_button.connect("pressed", self._on_tutorial_button_pressed)
 	_play_button.connect("pressed", self._on_play_button_pressed)
 
 	ViewController.register_view(ViewController.CLIENT_VIEWS.MAIN_MENU, self)
