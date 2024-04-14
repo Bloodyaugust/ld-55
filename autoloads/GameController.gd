@@ -56,8 +56,14 @@ func tower_destroyed(team: GameConstants.TEAM) -> void:
 		GameConstants.TEAM.PLAYER:
 			Store.set_state("winner", GameConstants.TEAM.AI)
 	
-	Store.set_state("game", GameConstants.GAME_OVER)
-	ViewController.set_client_view(ViewController.CLIENT_VIEWS.SCORE)
+	if GameConstants.AI_CONTROLLED_PLAYER == true:
+		Store.set_state("game", GameConstants.GAME_OVER)
+		await get_tree().create_timer(0.1).timeout
+		Store.set_state("game", GameConstants.GAME_STARTING)
+	else:
+		Store.set_state("game", GameConstants.GAME_OVER)
+		ViewController.set_client_view(ViewController.CLIENT_VIEWS.SCORE)
+	
 
 
 func _handle_hotkeys() -> void:
