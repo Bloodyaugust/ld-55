@@ -2,7 +2,7 @@ extends Control
 
 @onready var _resources: Label = %ResourcesLabel
 
-func _on_state_changed(state_key: String, substate: Variant) -> void:
+func _on_state_changed(state_key: String, _substate: Variant) -> void:
 	match state_key:
 		GameConstants.STORE_KEYS.RESOURCES:
 			_resources.text = "Monies: {total}({rate})".format({

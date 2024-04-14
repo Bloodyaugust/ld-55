@@ -21,7 +21,9 @@ func save_persistent_store() -> void:
 func set_state(state_key: String, new_state) -> void:
 	state[state_key] = new_state
 	emit_signal("state_changed", state_key, state[state_key])
-	print("State changed: ", state_key, " -> ", state[state_key])
+	
+	if state_key != GameConstants.STORE_KEYS.RESOURCES:
+		print("State changed: ", state_key, " -> ", state[state_key])
 
 
 func _initialize():
