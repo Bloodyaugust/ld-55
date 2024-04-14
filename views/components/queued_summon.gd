@@ -8,9 +8,5 @@ var demon: DemonData
 
 
 func _ready():
-	_label.text = "{count}x {name}".format({
-		"count": "%02d" % count,
-		"name": demon.name
-	})
+	_label.text = "{count}x {name}".format({"count": "%02d" % count, "name": demon.name})
 	_texture.texture = demon.player_sprite
-

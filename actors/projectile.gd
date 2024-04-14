@@ -13,16 +13,19 @@ var damage: float
 var damage_type: GameConstants.DAMAGE_TYPE
 var nav_target: Variant
 
+
 func _attack() -> void:
 	nav_target.damage(damage, damage_type)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if team == GameConstants.TEAM.AI:
-		sprite.texture = ai_texture 
+		sprite.texture = ai_texture
 	else:
 		sprite.texture = player_texture
-	
+
+
 func _physics_process(delta):
 	if GDUtil.reference_safe(nav_target):
 		var _move_direction: Vector2 = global_position.direction_to(nav_target.global_position)
@@ -35,4 +38,3 @@ func _physics_process(delta):
 			look_at(nav_target.global_position)
 	else:
 		queue_free()
-
