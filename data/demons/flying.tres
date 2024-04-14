@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="DemonData" load_steps=3 format=3 uid="uid://w4c8d2mjpelg"]
+[gd_resource type="Resource" script_class="DemonData" load_steps=4 format=3 uid="uid://w4c8d2mjpelg"]
 
 [ext_resource type="Script" path="res://data/demon.gd" id="1_eql1t"]
+[ext_resource type="Texture2D" uid="uid://b8ia2amn13nvm" path="res://sprites/demons/harpy_red.png" id="1_pvhst"]
 [ext_resource type="Texture2D" uid="uid://cw8f3w0gibusf" path="res://sprites/demons/harpy_blue.png" id="2_7aj02"]
 
 [resource]
@@ -11,7 +12,8 @@ move_speed = 300.0
 damage = 7.5
 attack_interval = 0.5
 cost = 15.0
-sprite = ExtResource("2_7aj02")
+player_sprite = ExtResource("2_7aj02")
+ai_sprite = ExtResource("1_pvhst")
 attack_range = 100.0
 sight_range = 0.0
 armor_type = 1

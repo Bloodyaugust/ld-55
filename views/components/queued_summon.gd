@@ -12,5 +12,5 @@ func _ready():
 		"count": "%02d" % count,
 		"name": demon.name
 	})
-	_texture.texture = demon.sprite
+	_texture.texture = demon.player_sprite
 

@@ -71,7 +71,11 @@ func _ready():
 	_health_bar.value = _health / data.health
 	_label.text = data.name
 	_current_nav_target = initial_nav_target
-	_sprite.texture = data.sprite
+	
+	if team == GameConstants.TEAM.AI:
+		_sprite.texture = data.ai_sprite
+	else:
+		_sprite.texture = data.player_sprite
 
 
 func _physics_process(delta):

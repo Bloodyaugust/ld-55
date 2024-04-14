@@ -30,7 +30,7 @@ func _on_store_state_update(state_key: String, _substate: Variant) -> void:
 func _ready():
 	Store.state_changed.connect(_on_store_state_update)
 	gui_input.connect(_on_gui_input)
-	_texture.texture = data.sprite
+	_texture.texture = data.player_sprite
 	
 	_description.text = "{name}\r\nCost: {cost}\r\nHealth: {health}\r\nDamage: {dps}/sec\r\nAttack Type: {attack}\r\nArmor Type: {armor}".format({
 		"name": data.name,

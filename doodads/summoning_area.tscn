@@ -1,16 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2rr6cgguw8qn"]
 
 [ext_resource type="Script" path="res://doodads/summoning_area.gd" id="1_f6j3c"]
-[ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="1_nhp4n"]
+[ext_resource type="Texture2D" uid="uid://crgjvjhd7k8mf" path="res://sprites/summoning_area_blue.png" id="2_6nnho"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qo84p"]
-radius = 35.2278
+radius = 95.1893
 
 [node name="SummoningArea" type="Node2D" groups=["SummoningArea"]]
 script = ExtResource("1_f6j3c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_nhp4n")
+position = Vector2(0, -41)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_6nnho")
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true

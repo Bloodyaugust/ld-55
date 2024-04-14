@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="DemonData" load_steps=3 format=3 uid="uid://d5syclv4fn5d"]
+[gd_resource type="Resource" script_class="DemonData" load_steps=4 format=3 uid="uid://d5syclv4fn5d"]
 
+[ext_resource type="Texture2D" uid="uid://lkjpuj6vhxw0" path="res://sprites/demons/imp_red.png" id="1_vf37y"]
 [ext_resource type="Script" path="res://data/demon.gd" id="1_xqfc3"]
 [ext_resource type="Texture2D" uid="uid://d3ta8rmfu0l25" path="res://sprites/demons/imp_blue.png" id="2_ajjk6"]
 
@@ -11,7 +12,8 @@ move_speed = 300.0
 damage = 7.5
 attack_interval = 0.5
 cost = 15.0
-sprite = ExtResource("2_ajjk6")
+player_sprite = ExtResource("2_ajjk6")
+ai_sprite = ExtResource("1_vf37y")
 attack_range = 250.0
 sight_range = 0.0
 armor_type = 0
