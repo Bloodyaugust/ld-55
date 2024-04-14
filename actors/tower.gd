@@ -45,7 +45,6 @@ func _process(delta):
 	var _enemy_damageables_in_range: Array[Node2D] = _enemy_damageables.filter(func (checking_damageable: Node2D): return global_position.distance_to(checking_damageable.global_position) <= data.attack_range)
 	
 	if is_equal_approx(_attack_cooldown, 0.0) and _enemy_damageables_in_range.size() > 0:
-		print("I SHOULD ATTACK LOLOL")
 		_attack(_enemy_damageables_in_range.front())
 	
 	
