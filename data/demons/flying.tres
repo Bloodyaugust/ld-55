@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DemonData" load_steps=3 format=3 uid="uid://w4c8d2mjpelg"]
+
+[ext_resource type="Script" path="res://data/demon.gd" id="1_eql1t"]
+[ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="2_rbiwf"]
+
+[resource]
+script = ExtResource("1_eql1t")
+name = "Harpy"
+health = 50.0
+move_speed = 300.0
+damage = 7.5
+attack_interval = 0.5
+cost = 15.0
+sprite = ExtResource("2_rbiwf")
+attack_range = 200.0
+sight_range = 0.0
