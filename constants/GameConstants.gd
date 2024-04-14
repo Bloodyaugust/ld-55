@@ -34,6 +34,7 @@ const ARMOR_TYPE_NAMES = {
 
 const RESOURCES_STARTING_TOTAL = 0.0
 const RESOURCES_STARTING_RATE = 5.0
+const AI_COST_HANDICAP = 4.0
 
 const WAYPOINTS_GROUP = "Waypoints"
 const SUMMONING_AREAS_GROUP = "SummoningArea"

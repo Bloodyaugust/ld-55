@@ -84,12 +84,8 @@ func _physics_process(delta):
 
 func _process(delta):
 	_attack_cooldown = clamp(_attack_cooldown - delta, 0.0, data.attack_interval)
-	#var _demon_group_nodes := get_tree().get_nodes_in_group(GameConstants.DEMONS_GROUP)
 	var _damageable_group_nodes := get_tree().get_nodes_in_group(GameConstants.DAMAGEABLE_GROUP)
-
-	#var _demons: Array[Demon] = []
-	#_demons.assign(_demon_group_nodes)
-
+	
 	var _damageables: Array[Node2D] = []
 	_damageables.assign(_damageable_group_nodes)
 
