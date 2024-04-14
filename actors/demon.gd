@@ -8,6 +8,7 @@ enum DEMON_STATES {
 }
 
 const PUSH_DISTANCE: float = 50.0
+const projectile_scene: PackedScene = preload("res://actors/projectile.tscn")
 
 @export var data: DemonData
 @export var initial_nav_target: Node2D
@@ -17,6 +18,7 @@ const PUSH_DISTANCE: float = 50.0
 @onready var _health_bar: ProgressBar = %ProgressBar
 @onready var _label: Label = %Label
 @onready var _sprite: Sprite2D = %Sprite2D
+
 
 var _attack_cooldown: float
 var _current_nav_target: Variant
@@ -53,6 +55,24 @@ func damage(amount: float, type: GameConstants.DAMAGE_TYPE) -> void:
 
 func set_nav_target(new_target: Node2D) -> void:
 	_current_nav_target = new_target
+
+
+func _launch_projectile(attack_target: Node2D) -> void:
+	var _new_projectile: Projectile = projectile_scene.instantiate() as Projectile
+	_new_projectile.global_position = %ProjectileSpawn.global_position
+	_new_projectile.damage = data.damage
+	_new_projectile.damage_type = data.damage_type
+	_new_projectile.team = team
+	_new_projectile.nav_target = attack_target
+
+	$"../".add_child(_new_projectile)
+	
+	_attack_cooldown = data.attack_interval
+	
+	if attack_target.global_position.x <= global_position.x:
+		_animation_player.play("attack_left")
+	else:
+		_animation_player.play("attack_right")
 
 
 func _attack(attack_target: Node2D) -> void:
@@ -137,4 +157,7 @@ func _process(delta):
 			if _enemy_damageables_in_range.size() == 0:
 				_state = DEMON_STATES.IDLE
 			elif is_equal_approx(_attack_cooldown, 0.0):
-				_attack(_enemy_damageables_in_range.front())
+				if data.name == "Imp":
+					_launch_projectile(_enemy_damageables_in_range.front())
+				else:
+					_attack(_enemy_damageables_in_range.front())

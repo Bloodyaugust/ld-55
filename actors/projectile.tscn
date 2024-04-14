@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ul6kyk8om2bk"]
+
+[ext_resource type="Script" path="res://actors/projectile.gd" id="1_o0b6b"]
+[ext_resource type="Texture2D" uid="uid://bu66t81mqxdae" path="res://sprites/projectile_blue.png" id="2_lnyx2"]
+
+[node name="Projectile" type="Node2D"]
+script = ExtResource("1_o0b6b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+rotation = 2.22529
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_lnyx2")

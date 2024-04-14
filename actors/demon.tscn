@@ -1,27 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://dfubdup154sny"]
 
 [ext_resource type="Script" path="res://actors/demon.gd" id="1_ga683"]
-[ext_resource type="Texture2D" uid="uid://6aytmcnqiasd" path="res://sprites/demons/grunt_blue.png" id="2_4romg"]
+[ext_resource type="Texture2D" uid="uid://d3ta8rmfu0l25" path="res://sprites/demons/imp_blue.png" id="2_dtj1y"]
 [ext_resource type="Theme" uid="uid://co811ue55i33m" path="res://resources/base_theme.tres" id="3_t4eyg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ajtp"]
 radius = 27.0
-
-[sub_resource type="Animation" id="Animation_kkfe4"]
-resource_name = "idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.1, 0.1), Vector2(0.095, 0.09), Vector2(0.1, 0.1)]
-}
 
 [sub_resource type="Animation" id="Animation_8d0ut"]
 length = 0.001
@@ -120,6 +104,22 @@ tracks/1/keys = {
 "values": [0.0, 0.127409, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_kkfe4"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(0.095, 0.09), Vector2(0.1, 0.1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xs4tr"]
 _data = {
 "RESET": SubResource("Animation_8d0ut"),
@@ -134,7 +134,7 @@ script = ExtResource("1_ga683")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_4romg")
+texture = ExtResource("2_dtj1y")
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -165,3 +165,7 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_xs4tr")
 }
+
+[node name="ProjectileSpawn" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(55, -55)
