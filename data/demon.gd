@@ -10,3 +10,5 @@ class_name DemonData
 @export var sprite: Texture2D
 @export var attack_range: float
 @export var sight_range: float
+@export var armor_type: GameConstants.ARMOR_TYPE
+@export var damage_type: GameConstants.DAMAGE_TYPE

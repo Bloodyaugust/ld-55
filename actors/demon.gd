@@ -18,21 +18,39 @@ var _current_nav_target: Variant
 var _health: float
 var _state: DEMON_STATES
 
+const damage_modifier = {
+			GameConstants.DAMAGE_TYPE.BLUNT: {
+				GameConstants.ARMOR_TYPE.LIGHT: 2.0,
+				GameConstants.ARMOR_TYPE.MEDIUM: 1.5,
+				GameConstants.ARMOR_TYPE.HEAVY: 0.5
+			},
+			GameConstants.DAMAGE_TYPE.PIERCING: {
+				GameConstants.ARMOR_TYPE.LIGHT: 1.0,
+				GameConstants.ARMOR_TYPE.MEDIUM: 1.0,
+				GameConstants.ARMOR_TYPE.HEAVY: 2.0
+			},
+			GameConstants.DAMAGE_TYPE.MAGIC: {
+				GameConstants.ARMOR_TYPE.LIGHT: 1.0,
+				GameConstants.ARMOR_TYPE.MEDIUM: 1.0,
+				GameConstants.ARMOR_TYPE.HEAVY: 1.0
+			},
+		}
 
-func damage(amount: float) -> void:
-	_health = clamp(_health - amount, 0.0, data.health)
+
+func damage(amount: float, type: GameConstants.DAMAGE_TYPE) -> void:
+	var _damage_modifier = damage_modifier[type][data.armor_type]
+	_health = clamp(_health - (amount * _damage_modifier), 0.0, data.health)
 	_health_bar.value = _health / data.health
 	
 	if _health <= 0.0:
 		queue_free()
-
 
 func set_nav_target(new_target: Node2D) -> void:
 	_current_nav_target = new_target
 
 
 func _attack(attack_target: Node2D) -> void:
-	attack_target.damage(data.damage)
+	attack_target.damage(data.damage, data.damage_type)
 	
 	_attack_cooldown = data.attack_interval
 
