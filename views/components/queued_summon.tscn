@@ -4,11 +4,13 @@
 [ext_resource type="Script" path="res://views/components/queued_summon.gd" id="1_dw0x7"]
 
 [node name="QueuedSummon" type="HBoxContainer"]
+size_flags_horizontal = 3
 script = ExtResource("1_dw0x7")
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_type_variation = &"LargeLabel"
 text = "4x Harpy"
 
@@ -16,3 +18,4 @@ text = "4x Harpy"
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("1_88saf")
+stretch_mode = 5

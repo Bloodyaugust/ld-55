@@ -106,42 +106,44 @@ script = ExtResource("8_oyi0q")
 
 [node name="HUDRoot" type="CanvasLayer" parent="."]
 
-[node name="Summoning" type="CenterContainer" parent="HUDRoot"]
+[node name="Summoning" type="PanelContainer" parent="HUDRoot"]
 visible = false
-anchors_preset = 12
+custom_minimum_size = Vector2(0, 260)
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -24.0
+offset_left = -36.0
+offset_top = -260.0
+offset_right = 36.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("8_mqmnd")
 script = ExtResource("9_bs3c2")
 
-[node name="PanelContainer" type="PanelContainer" parent="HUDRoot/Summoning"]
+[node name="MarginContainer" type="MarginContainer" parent="HUDRoot/Summoning"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HUDRoot/Summoning/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUDRoot/Summoning/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUDRoot/Summoning/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="SummonButtonsContainer" type="HBoxContainer" parent="HUDRoot/Summoning/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="SummonButtonsContainer" type="HBoxContainer" parent="HUDRoot/Summoning/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VSeparator" type="VSeparator" parent="HUDRoot/Summoning/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="HUDRoot/Summoning/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="HUDRoot/Summoning/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="HUDRoot/Summoning/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HUDRoot/Summoning/PanelContainer/MarginContainer/HBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HUDRoot/Summoning/MarginContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="QueuedSummonsContainer" type="VBoxContainer" parent="HUDRoot/Summoning/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer"]
+[node name="QueuedSummonsContainer" type="VBoxContainer" parent="HUDRoot/Summoning/MarginContainer/HBoxContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 alignment = 2
 
