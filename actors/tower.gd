@@ -2,6 +2,7 @@ extends Node2D
 
 const ai_sprite: Texture2D = preload("res://sprites/tower_red.png")
 const player_sprite: Texture2D = preload("res://sprites/tower_blue.png")
+const projectile_scene: PackedScene = preload("res://actors/projectile.tscn")
 
 @export var data: TowerData
 @export var team: GameConstants.TEAM
@@ -24,7 +25,14 @@ func damage(amount: float, _type: GameConstants.DAMAGE_TYPE) -> void:
 			GameController.tower_destroyed(team)
 
 func _attack(attack_target: Node2D) -> void:
-	attack_target.damage(data.damage, data.damage_type)
+	var _new_projectile: Projectile = projectile_scene.instantiate() as Projectile
+	_new_projectile.global_position = %ProjectileSpawn.global_position
+	_new_projectile.damage = data.damage
+	_new_projectile.damage_type = data.damage_type
+	_new_projectile.team = team
+	_new_projectile.nav_target = attack_target
+
+	$"../".add_child(_new_projectile)
 	
 	_attack_cooldown = data.attack_interval
 
