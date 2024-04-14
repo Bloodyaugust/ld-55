@@ -6,8 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_psthq"]
 radius = 74.0608
 
-[node name="Waypoint" type="Node2D"]
+[node name="Waypoint" type="Node2D" groups=["Waypoints"]]
 script = ExtResource("1_mjwuc")
+resource_rate = 5.0
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
