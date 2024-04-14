@@ -17,6 +17,7 @@ const CAPTURE_THRESHOLD: float = 5.0
 @onready var _area2D: Area2D = %Area2D
 @onready var _progress_bar: ProgressBar = %ProgressBar
 @onready var _team_label: Label = %TeamLabel
+@onready var _info: Label = %Info
 
 var _team: GameConstants.TEAM = GameConstants.TEAM.NEUTRAL
 var _demons_in_waypoint: Array[Demon]
@@ -96,3 +97,4 @@ func _ready():
 	_area2D.area_entered.connect(_on_area2D_entered)
 	_area2D.area_exited.connect(_on_area2D_exited)
 	_update_team_label()
+	_info.text = "+%1.f Resources/sec" % resource_rate

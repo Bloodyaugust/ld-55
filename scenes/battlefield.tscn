@@ -17,6 +17,7 @@
 position = Vector2(-1000, 0)
 nav_target_ai = NodePath("../ContestedWaypoint")
 nav_target_player = NodePath("../../AITower")
+resource_rate = 2.0
 
 [node name="ContestedWaypoint" parent="Midlane" node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
 nav_target_ai = NodePath("../PlayerWaypoint")
@@ -26,6 +27,7 @@ nav_target_player = NodePath("../AIWaypoint")
 position = Vector2(1000, 0)
 nav_target_ai = NodePath("../../PlayerTower")
 nav_target_player = NodePath("../ContestedWaypoint")
+resource_rate = 2.0
 
 [node name="AISummoningArea" parent="Midlane" node_paths=PackedStringArray("nav_target") instance=ExtResource("7_6in7d")]
 position = Vector2(-1700, 0)
@@ -43,11 +45,13 @@ position = Vector2(0, -500)
 position = Vector2(-600, 0)
 nav_target_ai = NodePath("../../Midlane/ContestedWaypoint")
 nav_target_player = NodePath("../../AITower")
+resource_rate = 3.0
 
 [node name="PlayerWaypoint" parent="Toplane" node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
 position = Vector2(600, 0)
 nav_target_ai = NodePath("../../PlayerTower")
 nav_target_player = NodePath("../../Midlane/ContestedWaypoint")
+resource_rate = 3.0
 
 [node name="AISummoningArea" parent="Toplane" node_paths=PackedStringArray("nav_target") instance=ExtResource("7_6in7d")]
 position = Vector2(-1800, 250)
@@ -65,15 +69,18 @@ position = Vector2(0, 500)
 position = Vector2(-1000, 0)
 nav_target_ai = NodePath("../ContestedWaypoint")
 nav_target_player = NodePath("../../AITower")
+resource_rate = 1.5
 
 [node name="ContestedWaypoint" parent="Botlane" node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
 nav_target_ai = NodePath("../PlayerWaypoint")
 nav_target_player = NodePath("../AIWaypoint")
+resource_rate = 1.5
 
 [node name="PlayerWaypoint" parent="Botlane" node_paths=PackedStringArray("nav_target_ai", "nav_target_player") instance=ExtResource("4_d8jk6")]
 position = Vector2(1000, 0)
 nav_target_ai = NodePath("../../PlayerTower")
 nav_target_player = NodePath("../ContestedWaypoint")
+resource_rate = 1.5
 
 [node name="AISummoningArea" parent="Botlane" node_paths=PackedStringArray("nav_target") instance=ExtResource("7_6in7d")]
 position = Vector2(-1800, -250)
