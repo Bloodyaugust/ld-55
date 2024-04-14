@@ -1,12 +1,6 @@
-# LD 55
+# Infernal Conquest
 
 Entry for Ludum Dare 55!
-
-## Modifying for a new game
-
-Change all instances of `ld-55` to `your-game-name` in:
-- `export_presets.cfg`
-- `tools/build-and-deploy.sh`
 
 ## Installing python deps and activating pre-commit hooks for gdformat
 
