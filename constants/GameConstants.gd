@@ -32,7 +32,8 @@ const DEMONS_GROUP = "Demon"
 
 const STORE_KEYS := {
 	"SELECTED_SUMMONING_AREA": "selected_summoning_area",
-	"RESOURCES": "resources"
+	"RESOURCES": "resources",
+	"SELECTION": "selection"
 }
 
 const DEMON_DATA := {
