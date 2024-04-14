@@ -7,6 +7,8 @@ enum DEMON_STATES {
 	ATTACKING
 }
 
+const PUSH_DISTANCE: float = 50.0
+
 @export var data: DemonData
 @export var initial_nav_target: Node2D
 @export var team: GameConstants.TEAM
@@ -46,6 +48,7 @@ func damage(amount: float, type: GameConstants.DAMAGE_TYPE) -> void:
 	if _health <= 0.0:
 		queue_free()
 
+
 func set_nav_target(new_target: Node2D) -> void:
 	_current_nav_target = new_target
 
@@ -64,6 +67,19 @@ func _ready():
 
 
 func _physics_process(delta):
+	var _demon_group_nodes := get_tree().get_nodes_in_group(GameConstants.DEMONS_GROUP)
+	
+	var _demons: Array[Demon] = []
+	_demons.assign(_demon_group_nodes)
+	var _close_demons: Array[Demon] = _demons.filter(func(demon): return demon != self and global_position.distance_to(demon.global_position) <= PUSH_DISTANCE)
+	
+	if _close_demons.size() > 0:
+		var _push_direction: Vector2 = Vector2(randf(), randf())
+		for demon in _close_demons:
+			_push_direction += global_position - demon.global_position
+
+		translate(_push_direction.normalized() * delta * _close_demons.size() * 15)
+	
 	match _state:
 		DEMON_STATES.IDLE:
 			pass
