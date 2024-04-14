@@ -12,5 +12,5 @@ var data: DemonData
 func _ready():
 	_button.pressed.connect(func(): pressed.emit())
 	
-	_cost.text = "PLACEHOLDER COST"
+	_cost.text = String.num(data.cost, 0)
 	_name.text = data.name
