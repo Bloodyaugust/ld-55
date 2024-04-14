@@ -5,14 +5,16 @@ const demon_scene: PackedScene = preload("res://actors/demon.tscn")
 const wave_duration: float = 10.0
 
 var _current_game_scene: Variant = null
+var _player_summoning_areas: Array = []
 var _summoning_queue: Array = []
 var _summoning_cooldown: float = 0.0
 
 func queue_demon(summoning_area: Node2D, demon: DemonData) -> void:
-	_summoning_queue.append({ "summoning_area": summoning_area, "demon": demon})
-	Store.state[GameConstants.STORE_KEYS.RESOURCES][summoning_area.team]["total"] = Store.state[GameConstants.STORE_KEYS.RESOURCES][summoning_area.team]["total"] - demon.cost
-	Store.set_state(GameConstants.STORE_KEYS.RESOURCES, Store.state[GameConstants.STORE_KEYS.RESOURCES])
-	Store.set_state(GameConstants.STORE_KEYS.SUMMONING_QUEUE, _summoning_queue)
+	if Store.state[GameConstants.STORE_KEYS.RESOURCES][summoning_area.team]["total"] >= demon.cost:
+		_summoning_queue.append({ "summoning_area": summoning_area, "demon": demon})
+		Store.state[GameConstants.STORE_KEYS.RESOURCES][summoning_area.team]["total"] = Store.state[GameConstants.STORE_KEYS.RESOURCES][summoning_area.team]["total"] - demon.cost
+		Store.set_state(GameConstants.STORE_KEYS.RESOURCES, Store.state[GameConstants.STORE_KEYS.RESOURCES])
+		Store.set_state(GameConstants.STORE_KEYS.SUMMONING_QUEUE, _summoning_queue)
 	
 func _summon_queued_demons() -> void:
 	for summon in _summoning_queue:
@@ -56,7 +58,31 @@ func tower_destroyed(team: GameConstants.TEAM) -> void:
 	
 	Store.set_state("game", GameConstants.GAME_OVER)
 	ViewController.set_client_view(ViewController.CLIENT_VIEWS.SCORE)
+
+
+func _handle_hotkeys() -> void:
+	var _picked_summon_area = Store.state[GameConstants.STORE_KEYS.SELECTED_SUMMONING_AREA] if Store.state.has(GameConstants.STORE_KEYS.SELECTED_SUMMONING_AREA) else null 
 	
+	if Input.is_action_just_released("select_area_1"):
+		Store.set_state(GameConstants.STORE_KEYS.SELECTED_SUMMONING_AREA, _player_summoning_areas[0])
+		_picked_summon_area = _player_summoning_areas[0]
+	if Input.is_action_just_released("select_area_2"):
+		Store.set_state(GameConstants.STORE_KEYS.SELECTED_SUMMONING_AREA, _player_summoning_areas[1])
+		_picked_summon_area = _player_summoning_areas[1]
+	if Input.is_action_just_released("select_area_3"):
+		Store.set_state(GameConstants.STORE_KEYS.SELECTED_SUMMONING_AREA, _player_summoning_areas[2])
+		_picked_summon_area = _player_summoning_areas[2]
+
+	if _picked_summon_area:
+		if Input.is_action_just_released("queue_summon_1"):
+			queue_demon(_picked_summon_area, GameConstants.DEMON_DATA.melee)
+		if Input.is_action_just_released("queue_summon_2"):
+			queue_demon(_picked_summon_area, GameConstants.DEMON_DATA.ranged)
+		if Input.is_action_just_released("queue_summon_3"):
+			queue_demon(_picked_summon_area, GameConstants.DEMON_DATA.flying)
+		
+
+
 func _update_resource_totals(delta) -> void:
 	Store.state[GameConstants.STORE_KEYS.RESOURCES][GameConstants.TEAM.AI]["total"] = Store.state[GameConstants.STORE_KEYS.RESOURCES][GameConstants.TEAM.AI]["total"] + Store.state[GameConstants.STORE_KEYS.RESOURCES][GameConstants.TEAM.AI]["rate"] * delta
 	Store.state[GameConstants.STORE_KEYS.RESOURCES][GameConstants.TEAM.PLAYER]["total"] = Store.state[GameConstants.STORE_KEYS.RESOURCES][GameConstants.TEAM.PLAYER]["total"] + Store.state[GameConstants.STORE_KEYS.RESOURCES][GameConstants.TEAM.PLAYER]["rate"] * delta
@@ -89,6 +115,8 @@ func _on_store_state_changed(state_key: String, substate: Variant) -> void:
 					Store.set_state("game", GameConstants.GAME_IN_PROGRESS)
 					_summoning_queue = []
 					Store.set_state(GameConstants.STORE_KEYS.SUMMONING_QUEUE, [])
+					
+					_player_summoning_areas = get_tree().get_nodes_in_group(GameConstants.SUMMONING_AREAS_GROUP).filter(func(summoning_area): return summoning_area.team == GameConstants.TEAM.PLAYER)
 
 
 func _ready():
@@ -104,6 +132,7 @@ func _process(delta) -> void:
 	if Store.state.game == GameConstants.GAME_IN_PROGRESS:
 		_update_resource_totals(delta)
 		_update_summoning_cooldown(delta)
+		_handle_hotkeys()
 		if is_equal_approx(_summoning_cooldown, 0.0):
 			_summon_queued_demons()
 	
