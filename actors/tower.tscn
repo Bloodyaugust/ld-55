@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bd3ut506sq25t"]
 
 [ext_resource type="Script" path="res://actors/tower.gd" id="1_5vi0c"]
-[ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="1_ow1uf"]
+[ext_resource type="Texture2D" uid="uid://bobmaiuneq51k" path="res://sprites/tower_blue.png" id="2_3452a"]
 [ext_resource type="Theme" uid="uid://co811ue55i33m" path="res://resources/base_theme.tres" id="3_gcfse"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wf0im"]
@@ -14,15 +14,17 @@ bg_color = Color(0, 0.643137, 0.133333, 1)
 script = ExtResource("1_5vi0c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("1_ow1uf")
+unique_name_in_owner = true
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_3452a")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
-offset_top = -100.0
-offset_right = 4.0
-offset_bottom = -77.0
+custom_minimum_size = Vector2(300, 0)
+offset_left = -148.0
+offset_top = -250.0
+offset_right = 152.0
+offset_bottom = -227.0
 grow_horizontal = 2
 theme = ExtResource("3_gcfse")
 theme_override_styles/background = SubResource("StyleBoxFlat_wf0im")

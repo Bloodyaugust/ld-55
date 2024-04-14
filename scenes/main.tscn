@@ -152,5 +152,7 @@ layout_mode = 2
 text = "Main Menu"
 
 [node name="BetterCam" parent="." instance=ExtResource("5")]
-mouse_drag = false
+zoom = Vector2(0.6, 0.6)
+camera_target_speed = 1000.0
+zoom_min = 0.6
 zoom_max = 1.0
