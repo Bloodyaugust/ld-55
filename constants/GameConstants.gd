@@ -45,7 +45,8 @@ const STORE_KEYS := {
 	"SELECTED_SUMMONING_AREA": "selected_summoning_area",
 	"RESOURCES": "resources",
 	"SELECTION": "selection",
-	"TIME_TO_SUMMONING": "time_to_summoning"
+	"TIME_TO_SUMMONING": "time_to_summoning",
+	"SUMMONING_QUEUE": "summoning_queue"
 }
 
 const DEMON_DATA := {

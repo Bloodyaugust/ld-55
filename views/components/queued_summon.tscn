@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbw4t50e0dpy3"]
+
+[ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="1_88saf"]
+[ext_resource type="Script" path="res://views/components/queued_summon.gd" id="1_dw0x7"]
+
+[node name="QueuedSummon" type="HBoxContainer"]
+script = ExtResource("1_dw0x7")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"LargeLabel"
+text = "4x Harpy"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_88saf")

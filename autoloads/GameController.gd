@@ -12,6 +12,7 @@ func queue_demon(summoning_area: Node2D, demon: DemonData) -> void:
 	_summoning_queue.append({ "summoning_area": summoning_area, "demon": demon})
 	Store.state[GameConstants.STORE_KEYS.RESOURCES][summoning_area.team]["total"] = Store.state[GameConstants.STORE_KEYS.RESOURCES][summoning_area.team]["total"] - demon.cost
 	Store.set_state(GameConstants.STORE_KEYS.RESOURCES, Store.state[GameConstants.STORE_KEYS.RESOURCES])
+	Store.set_state(GameConstants.STORE_KEYS.SUMMONING_QUEUE, _summoning_queue)
 	
 func _summon_queued_demons() -> void:
 	for summon in _summoning_queue:
@@ -19,6 +20,7 @@ func _summon_queued_demons() -> void:
 	
 	_summoning_queue = []
 	_summoning_cooldown = wave_duration
+	Store.set_state(GameConstants.STORE_KEYS.SUMMONING_QUEUE, _summoning_queue)
 
 func summon_demon(summoning_area: Node2D, demon: DemonData) -> void:
 	var _new_demon: Demon = demon_scene.instantiate() as Demon
@@ -85,10 +87,13 @@ func _on_store_state_changed(state_key: String, substate: Variant) -> void:
 						}
 					})
 					Store.set_state("game", GameConstants.GAME_IN_PROGRESS)
+					_summoning_queue = []
+					Store.set_state(GameConstants.STORE_KEYS.SUMMONING_QUEUE, [])
 
 
 func _ready():
 	Store.state_changed.connect(_on_store_state_changed)
+	Store.set_state(GameConstants.STORE_KEYS.SUMMONING_QUEUE, [])
 
 
 func _unhandled_input(event) -> void:
