@@ -25,5 +25,6 @@ const STORE_KEYS := {
 
 const DEMON_DATA := {
 	"melee": preload ("res://data/demons/melee.tres"),
-	"ranged": preload ("res://data/demons/ranged.tres")
+	"ranged": preload ("res://data/demons/ranged.tres"),
+	"flying": preload ("res://data/demons/flying.tres")	
 }
