@@ -5,6 +5,8 @@ enum DEMON_STATES { IDLE, MOVING, ATTACKING }
 
 const PUSH_DISTANCE: float = 50.0
 const projectile_scene: PackedScene = preload("res://actors/projectile.tscn")
+const death_sound = preload("res://audio/death.wav")
+const damage_sound = preload("res://audio/damage.wav")
 
 @export var data: DemonData
 @export var initial_nav_target: Node2D
@@ -13,6 +15,8 @@ const projectile_scene: PackedScene = preload("res://actors/projectile.tscn")
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 @onready var _health_bar: ProgressBar = %ProgressBar
 @onready var _sprite: Sprite2D = %Sprite2D
+
+var sound_player := AudioStreamPlayer.new()
 
 var _attack_cooldown: float
 var _current_nav_target: Variant
@@ -45,11 +49,17 @@ func damage(amount: float, type: GameConstants.DAMAGE_TYPE) -> void:
 	var _damage_modifier = damage_modifier[type][data.armor_type]
 	_health = clamp(_health - (amount * _damage_modifier), 0.0, data.health)
 	_health_bar.value = _health / data.health
-
 	_health_bar.visible = true
 
 	if _health <= 0.0:
+		sound_player.stream = death_sound
+		sound_player.play()
 		queue_free()
+	else:
+		sound_player.stream = damage_sound
+		sound_player.play()
+		
+	
 
 
 func set_nav_target(new_target: Node2D) -> void:
@@ -89,7 +99,7 @@ func _ready():
 	_health = data.health
 	_health_bar.value = _health / data.health
 	_current_nav_target = initial_nav_target
-
+	$"../".add_child(sound_player)
 	if team == GameConstants.TEAM.AI:
 		_sprite.texture = data.ai_sprite
 	else:

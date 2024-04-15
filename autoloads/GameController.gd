@@ -2,8 +2,12 @@ extends Node
 
 const battlefield_scene: PackedScene = preload("res://scenes/battlefield.tscn")
 const demon_scene: PackedScene = preload("res://actors/demon.tscn")
+const tower_destroyed_sound = preload("res://audio/tower_destroyed.wav")
+const waypoint_captured_sound = preload("res://audio/captured.wav")
+const summoned_sound = preload("res://audio/summoned.wav")
 const wave_duration: float = 10.0
 
+var sound_player := AudioStreamPlayer.new()
 var _current_game_scene: Variant = null
 var _player_summoning_areas: Array = []
 var _summoning_queue: Array = []
@@ -17,6 +21,9 @@ func queue_demon(summoning_area: Node2D, demon: DemonData) -> void:
 		Store.set_state(GameConstants.STORE_KEYS.SUMMONING_QUEUE, _summoning_queue)
 	
 func _summon_queued_demons() -> void:
+	sound_player.stream = summoned_sound
+	sound_player.play()
+
 	for summon in _summoning_queue:
 		summon_demon(summon["summoning_area"], summon["demon"])
 	
@@ -35,6 +42,9 @@ func summon_demon(summoning_area: Node2D, demon: DemonData) -> void:
 	_new_demon.set_nav_target(summoning_area.nav_target)
 
 func waypoint_captured() -> void:
+	sound_player.stream = waypoint_captured_sound
+	sound_player.play()
+
 	var _waypoints := get_tree().get_nodes_in_group(GameConstants.WAYPOINTS_GROUP)
 	var _resource_rates = _waypoints.reduce(func (accu, waypoint: Waypoint):
 		if waypoint._team != GameConstants.TEAM.NEUTRAL:
@@ -49,6 +59,8 @@ func waypoint_captured() -> void:
 
 func tower_destroyed(team: GameConstants.TEAM) -> void:
 	_current_game_scene.queue_free()
+	sound_player.stream = tower_destroyed_sound
+	sound_player.play()
 	
 	match team:
 		GameConstants.TEAM.AI:
@@ -128,6 +140,7 @@ func _on_store_state_changed(state_key: String, substate: Variant) -> void:
 func _ready():
 	Store.state_changed.connect(_on_store_state_changed)
 	Store.set_state(GameConstants.STORE_KEYS.SUMMONING_QUEUE, [])
+	add_child(sound_player)	
 
 
 func _unhandled_input(event) -> void:

@@ -132,7 +132,8 @@ Greyson Richey: Design, Code
 Jason Carter: Design, Code, Music
 Taylor Nichols: Design, Art
 
-Made with Godot"
+Made with Godot
+Sound Effects made with sfxr"
 horizontal_alignment = 1
 
 [node name="MainMenu" type="Button" parent="UIRoot/About/PanelContainer/MarginContainer/VBoxContainer"]

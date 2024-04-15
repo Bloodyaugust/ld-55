@@ -22,6 +22,7 @@ func damage(amount: float, _type: GameConstants.DAMAGE_TYPE) -> void:
 
 		if _health <= 0.0:
 			_dead = true
+			
 			GameController.tower_destroyed(team)
 
 

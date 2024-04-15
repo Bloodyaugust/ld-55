@@ -26,6 +26,7 @@ enum ARMOR_TYPE {
 	MEDIUM,
 	HEAVY
 }
+
 const ARMOR_TYPE_NAMES = {
 	ARMOR_TYPE.LIGHT: "Light",
 	ARMOR_TYPE.MEDIUM: "Medium",
